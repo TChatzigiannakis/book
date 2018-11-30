@@ -1,59 +1,63 @@
-## Appendix A: Keywords
+## Παράρτημα Α: Λέξεις-κλειδιά
 
-The following list contains keywords that are reserved for current or future
-use by the Rust language. As such, they cannot be used as identifiers (except as
-[raw identifiers][raw-identifiers]), including names of functions, variables,
-parameters, struct fields, modules, crates, constants, macros, static values,
-attributes, types, traits, or lifetimes.
 
-### Keywords Currently in Use
+Η παρακάτω λίστα περιέχει λέξεις-κλειδιά που είναι δεσμευμένες για τωρινή ή
+μελλοντική χρήση από τη γλώσσα Rust. Ως εκ τούτου, δε μπορούν να χρησιμοποιηθούν
+ως αναγνωριστικά (εκτός από τη χρήση τους ως [πρωτογενή αναγνωριστικά][raw-identifiers]),
+το οποίο συμπεριλαμβάνει ονόματα συναρτήσεων, μεταβλητών, παραμέτρων, πεδίων δομών,
+τμημάτων, κιβωτίων, σταθερών, μακροεντολών, στατικών τιμών, γνωσιματων, τυπων,
+χαρακτηριστικών, ή διαρκειών ζωής.
 
-The following keywords currently have the functionality described.
+### Λέξεις-κλειδιά σε Χρήση Τώρα
 
-* `as` - perform primitive casting, disambiguate the specific trait containing
-  an item, or rename items in `use` and `extern crate` statements
-* `break` - exit a loop immediately
-* `const` - define constant items or constant raw pointers
-* `continue` - continue to the next loop iteration
-* `crate` - link an external crate or a macro variable representing the crate in
-  which the macro is defined
-* `dyn` - dynamic dispatch to a trait object
-* `else` - fallback for `if` and `if let` control flow constructs
-* `enum` - define an enumeration
-* `extern` - link an external crate, function, or variable
-* `false` - Boolean false literal
-* `fn` - define a function or the function pointer type
-* `for` - loop over items from an iterator, implement a trait, or specify a
-  higher-ranked lifetime
-* `if` - branch based on the result of a conditional expression
-* `impl` - implement inherent or trait functionality
-* `in` - part of `for` loop syntax
-* `let` - bind a variable
-* `loop` - loop unconditionally
-* `match` - match a value to patterns
-* `mod` - define a module
-* `move` - make a closure take ownership of all its captures
-* `mut` - denote mutability in references, raw pointers, or pattern bindings
-* `pub` - denote public visibility in struct fields, `impl` blocks, or modules
-* `ref` - bind by reference
-* `return` - return from function
-* `Self` - a type alias for the type implementing a trait
-* `self` - method subject or current module
-* `static` - global variable or lifetime lasting the entire program execution
-* `struct` - define a structure
-* `super` - parent module of the current module
-* `trait` - define a trait
-* `true` - Boolean true literal
-* `type` - define a type alias or associated type
-* `unsafe` - denote unsafe code, functions, traits, or implementations
-* `use` - bring symbols into scope
-* `where` - denote clauses that constrain a type
-* `while` - loop conditionally based on the result of an expression
+Οι παρακάτω λέξεις-κλειδιά έχουν αυτή τη στιγμή περιγραφή λειτουργίας.
 
-### Keywords Reserved for Future Use
+* `as` - εκτέλεση απλής μετατροπής, αποσαφήνιση του χαρακτηριστικού που
+περιέχει ένα αντικείμενο, ή μετονομασία αντικειμένου σε προτάσεις `use`
+ή `extern crate`
+* `break` - άμεση έξοδος από βρόχο
+* `const` - ορισμός σταθερού αντικειμένου ή δείκτη σε σταθερά
+* `continue` - μετάβαση στην επόμενη επανάληψη του βρόχου
+* `crate` - σύνδεση ενός εξωτερικού κιβωτίου ή μιας μεταβλητής μακροεντολής
+που αναπαραιστά το κιβώτιο στο οποίο ορίζεται η μακροεντολή
+* `dyn` - δυναμική κλήση σε χαρακτηριστικό
+* `else` - εναλλακτική για εκφράσεις ελέγχου ροής `if` και `if let`
+* `enum` - ορισμός μιας απαρίθμησης
+* `extern` - σύνδεση ενός εξωτερικού κιβωτίου, συνάρτησης, ή μεταβλητής
+* `false` - κυριολεκτικό λογικού «όχι»
+* `fn` - ορισμός συνάρητσης ή ο τύπος δείκτη σε συνάρτηση
+* `for` - δημιουργία βρόχου που ανατρέχει σε συλλογή, υλοποίηση ενος
+χαρακτηριστικου, ή ορισμός μιας διάρκεις ζωής υψηλότερου βαθμού
+* `if` - διακλάδωση ροής με βάση το αποτέλεσμα μιας έκφρασης συνθήκης
+* `impl` - υλοποίηση εγγενούς λειτουργικότητας ή λειτουργικότητας
+από χαρακτηριστικό
+* `in` - μέρος του συντακτικού των βρόχων `for`
+* `let` - ονοματοδοσία μεταβλητής
+* `loop` - βρόχος χωρίς συνθήκη
+* `match` - ταίριασμα τιμής με μοτίβα
+* `mod` - ορισμός ενός τμήματος
+* `move` - κλείσιμο που λαμβάνει κυριότητα των μεταβλητών που αιχμαλωτίζει
+* `mut` - δήλωση μεταβλητότητας σε αναφορές, δείκτες, ή μοτίβα
+* `pub` - δήλωση δημόσιας ορατότητας σε πεδία δομών, μπλοκ `impl`, ή τμήματα
+* `ref` - ονοματοδοσία μέσω αναφοράς
+* `return` - επιστροφή από συνάρτηση
+* `Self` - ψευδώνυμο που αναφέρεται στον τύπο ο οποίος υλοποιεί ένα χαρακτηριστικό
+* `self` - υποκείμενο μεθόδου ή το τρέχον τμήμα
+* `static` - καθολική μεταβλητή ή διάρκεια ζωής που αντιστοιχεί σε ολόκληρη την εκτέλεση του προγράμματος
+* `struct` - ορισμός μιας δομής
+* `super` - γονεϊκό τμήμα του τρέχοντος τμήματος
+* `trait` - ορισμός ενός χαρακτηριστικού
+* `true` - κυριολεκτικό λογικού «ναι»
+* `type` - ορισμός ενός ψευδωνύμου τύπου ή συσχετισμένου τύπου
+* `unsafe` - δήλωση επισφαλούς κώδικα, συναρτήσεων, χαρακτηριστικών, ή υλοποιήσεων
+* `use` - προσθήκη συμβόλων σε θέα
+* `where` - δήλωση όρων που περιορίζουν έναν τύπο
+* `while` - βρόχος υπό συνθήκη με βάση το αποτέλεσμα μιας έκφρασης συνθήκης
 
-The following keywords do not have any functionality but are reserved by Rust
-for potential future use.
+### Λέξεις-κλειδιά Δεσμευμένες για Μελλοντική Χρήση
+
+Οι παρακάτω λέξεις δεν έχουν καμία λειτουργικότητα αλλά είναι δεσμευμένες από τη Rust
+για πιθανή μελλοντική χρήση.
 
 * `abstract`
 * `async`
@@ -70,13 +74,12 @@ for potential future use.
 * `virtual`
 * `yield`
 
-### Raw identifiers
+### Πρωτογενή αναγνωριστικά
 [raw-identifiers]: #raw-identifiers
 
-Raw identifiers let you use keywords where they would not normally be allowed by
-prefixing them with `r#`.
+Τα πρωτογενή αναγνωριστικά σας επιτρέπουν να χρησιμοποιήσετε λέξεις-κλειδιά σε σημεία όπου κανονικά δε θα μπορούσαν να χρησιμοποιηθούν, με χρήση του προθέματος `r#`.
 
-For example, `match` is a keyword. If you try to compile this function:
+Για παράδειγμα, το `match` είναι λέξη-κλειδί. Εάν επιχειρήσετε να μεταγλωττίσετε αυτή τη συνάρτηση:
 
 ```rust,ignore
 fn match(needle: &str, haystack: &str) -> bool {
@@ -84,7 +87,7 @@ fn match(needle: &str, haystack: &str) -> bool {
 }
 ```
 
-You’ll get this error:
+Θα λάεβετε το εξής σφάλμα:
 
 ```text
 error: expected identifier, found keyword `match`
@@ -94,7 +97,7 @@ error: expected identifier, found keyword `match`
   |    ^^^^^ expected identifier, found keyword
 ```
 
-You can write this with a raw identifier:
+Μπορείτε όμως να τη γράψετε με χρήση πρωτογενούς αναγνωριστικού:
 
 ```rust
 fn r#match(needle: &str, haystack: &str) -> bool {
@@ -106,12 +109,8 @@ fn main() {
 }
 ```
 
-Note the `r#` prefix on both the function name as well as the call.
+Προσέξτε το πρόθεμα `r#` τόσο στο όνομα της συνάρτησης όσο και στην κλήση.
 
-#### Motivation
+#### Κίνητρο
 
-This feature is useful for a few reasons, but the primary motivation was
-inter-edition situations. For example, `try` is not a keyword in the 2015
-edition, but is in the 2018 edition. So if you have a library that is written
-in Rust 2015 and has a `try` function, to call it in Rust 2018, you’ll need
-to use the raw identifier.
+Η δυνατότητα αυτή είναι χρήσιμη για κάποιους λόγους, αλλά το μεγαλύτερο κίνητρο ήταν οι καταστάσεις μετάβασης από έκδοση σε έκδοση. Για παράδειγμα, το `try` δεν είναι λέξη-κλειδή στην έκδοση 2015, αλλά είναι στην έκδοση 2018. Επομένως, εάν έχετε μια βιβλιοθήκη γραμμένη σε Rust του 2015 και η βιβλιοθήκη αυτή ορίζει μια συνάρητηση με όνομα `try`, για να κληθεί αυτή η συνάρτηση από κώδικα γραμμένο σε Rust του 2018 απαιτείται η χρήση του πρωτογενούς αναγνωριστικού.
