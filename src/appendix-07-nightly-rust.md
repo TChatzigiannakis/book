@@ -1,50 +1,56 @@
-# Appendix G - How Rust is Made and “Nightly Rust”
+# Παράρτημα Ζ - Πώς Φτιάχνεται η Rust και η «νυχτερινή Rust»
 
-This appendix is about how Rust is made and how that affects you as a Rust
-developer.
+Το παρόν παράρτημα αφορά το πώς φτιάχνεται η Rust και το πώς αυτό επηρεάζει
+εσάς ως προγραμματιστή.
 
-### Stability Without Stagnation
+### Σταθερότητα Χωρίς Στασιμότητα
 
-As a language, Rust cares a *lot* about the stability of your code. We want
-Rust to be a rock-solid foundation you can build on, and if things were
-constantly changing, that would be impossible. At the same time, if we can’t
-experiment with new features, we may not find out important flaws until after
-their release, when we can no longer change things.
+Ως γλώσσα, η Rust νοιάζεται *πολύ* για τη σταθερότητα του κώδικά σας. Θέλουμε
+η Rust να είναι ένα θεμέλιο στερεό σα βράχος στον οποίο μπορείτε να χτίσετε,
+και αν τα πράγματα άλλαζαν συνέχεια, αυτό θα ήταν αδύνατο. Την ίδια στιγμή,
+αν δε μπορούμε να πειραματιστούμε με νέες δυνατότητες, ίσως δε μπορέσουμε να
+εντοπίσουμε σημαντικά ελαττώματα τους παρά μόνο μετά την κυκλοφορία τους,
+όταν πλέον δε θα μπορούμε να τα διορθώσουμε.
 
-Our solution to this problem is what we call “stability without stagnation”,
-and our guiding principle is this: you should never have to fear upgrading to a
-new version of stable Rust. Each upgrade should be painless, but should also
-bring you new features, fewer bugs, and faster compile times.
+Η λύση μας σε αυτό το πρόβλημά είναι αυτό που αποκαλούμε «σταθερότητα χωρίς
+στασιμότητα» και η αρχή που μας καθοδηγεί είναι η εξής: δε θα πρέπει ποτέ να
+φοβάστε να αναβαθμίσετε σε μια νέα σταθερή έκδοση της Rust. Κάθε αναβάθμιση
+θα πρέπει να είναι ανώδυνη, αλλά θα πρέπει να σας φέρνει και καινούριες
+δυνατότητες, λιγότερα λάθη, και μικρότερους χρόνους μεταγλώττισης.
 
-### Choo, Choo! Release Channels and Riding the Trains
+### Τσαφ, Τσουφ! Κανάλια Κυκλοφορίας και Παίρνοντας τα Τρένα
 
-Rust development operates on a *train schedule*. That is, all development is
-done on the `master` branch of the Rust repository. Releases follow a software
-release train model, which has been used by Cisco IOS and other software
-projects. There are three *release channels* for Rust:
+Η ανάπτυξη της Rust ακολουθεί κάτι που λέγεται *«πρόγραμμα τρένου»*. Αυτό
+σημαίνει ότι όλη η ανάπτυξη γίνεται στον κλάδο `master` του αποθετηρίου της
+Rust. Οι κυκλοφορίες ακολουθούν το μοντέλο που χρησιμοποιήθηκε από το
+Cisco IOS και άλλα projects λογισμικού. Υπάρχουν τρία *κανάλια κυκλοφορίας*
+για τη Rust:
 
-* Nightly
-* Beta
-* Stable
+* Νυχτερινό (nightly)
+* Δοκιμαστικό (beta)
+* Στθερό (stable)
 
-Most Rust developers primarily use the stable channel, but those who want to
-try out experimental new features may use nightly or beta.
+Οι περισσότεροι χρήστες της Rust χρησιμοποιούν κυρίως το σταθερό κανάλι, αλλά
+όσοι θέλουν να δοκιμάσουν πειραματικές νέες δυνατότητες μπορούν να
+χρησιμοποιήσουν το νυχτερινό ή το δοκιμαστικό κανάλι.
 
-Here’s an example of how the development and release process works: let’s
-assume that the Rust team is working on the release of Rust 1.5. That release
-happened in December of 2015, but it will provide us with realistic version
-numbers. A new feature is added to Rust: a new commit lands on the `master`
-branch. Each night, a new nightly version of Rust is produced. Every day is a
-release day, and these releases are created by our release infrastructure
-automatically. So as time passes, our releases look like this, once a night:
+Ακολουθεί ένα παράδειγμα του πώς λειτουργεί η διαδικασία ανάπτυξης και
+κυκλοφορίας: ας υποθέσουμε ότι η ομάδα της Rust εργάζεται πάνω στην κυκλοφορία
+της Rust 1.5. Στην πραγματικότητα, η εν λόγω έκδοση κυκλοφόρησε το Δεκέμβριο
+του 2015, αλλά θα μας δώσει ρεαλιστικούς αριθμούς έκδοσης για το παράδειγμά μας.
+Μία νέα δυνατότητα προστίθεται στη Rust: μία νέα παράδοση φτάνει στον κλάδο
+`master`. Κάθε βράδυ, μια νυχτερινή έκδοση της Rust παράγεται. Κάθε μέρα είναι
+μέρα κυκλοφορίας, και οι κυκλοφορίες δημιουργούνται αυτόματα από τις υποδομές
+μας. Έτσι, καθώς περνάει ο καιρός, οι κυκλοφορίες μας μοιάζουν κάπως έτσι, μία
+κάθε βράδυ:
 
 ```text
 nightly: * - - * - - *
 ```
 
-Every six weeks, it’s time to prepare a new release! The `beta` branch of the
-Rust repository branches off from the `master` branch used by nightly. Now,
-there are two releases:
+Κάθε έξι εβδομάδες, είναι ώρα να ετοιμάσουμε μια καινούρια κυκλοφορία! Ο κλάδος
+`beta` του αποθετηρίου της Rust διακλαδίζεται από τον κλάδο `master` ο οποίος
+χρησιμοποιείται από το νυχτερινό κανάλι. Τώρα, υπάρχουν δύο κυκλοφορίες:
 
 ```text
 nightly: * - - * - - *
@@ -52,9 +58,11 @@ nightly: * - - * - - *
 beta:                *
 ```
 
-Most Rust users do not use beta releases actively, but test against beta in
-their CI system to help Rust discover possible regressions. In the meantime,
-there’s still a nightly release every night:
+Οι περισσότεροι χρήστες δε χρησιμοποιούν ενεργά τις δοκιμαστικές κυκλοφορίες,
+αλλά δοκιμάζουν να μεταγλωττίζουν τα projects τους χρησιμοποιώντας αυτό το
+κανάλι στα συστήματα συνεχούς ενσωμάτωσης, ώστε να βοηθήσουν τη Rust να
+ανακαλύψει τυχόν οπισθοδρομίσεις. Στο μεταξύ, συνεχίζει να υπάρχει μια
+νυχτερινή κυκλοφορία κάθε βράδυ:
 
 ```text
 nightly: * - - * - - * - - * - - *
@@ -62,10 +70,11 @@ nightly: * - - * - - * - - * - - *
 beta:                *
 ```
 
-Let’s say a regression is found. Good thing we had some time to test the beta
-release before the regression snuck into a stable release! The fix is applied
-to `master`, so that nightly is fixed, and then the fix is backported to the
-`beta` branch, and a new release of beta is produced:
+Ας υποθέσουμε ότι εντοπίζεται μια οπισθοδρόμιση. Ευτυχώς που είχαμε καιρό να
+ελέγξουμε τη δοκιμαστική κυκλοφορία προτού η οπισθοδρόμιση να τρυπώσει στη
+σταθερή κυκλοφορία! Η διόρθωση εφαρμόζεται στο `master` έτσι ώστε η νυχτερινή
+έκδοση να διορθωθεί, και ύστερα η διόρθωση εφαρμόζεται ξανά στον κλάδο `beta`,
+και μια νέα κυκλοφορία του καναλιού `beta` παράγεται:
 
 ```text
 nightly: * - - * - - * - - * - - * - - *
@@ -73,8 +82,8 @@ nightly: * - - * - - * - - * - - * - - *
 beta:                * - - - - - - - - *
 ```
 
-Six weeks after the first beta was created, it’s time for a stable release! The
-`stable` branch is produced from the `beta` branch:
+Έξι εβδομάδες μετά την πρώτη δοκιμαστική κυκλοφορία, είναι ώρα για μια σταθερή
+κυκλοφορία! Ο κλάδος `stable` δημιουργείται από τον κλάδο `beta`:
 
 ```text
 nightly: * - - * - - * - - * - - * - - * - * - *
@@ -84,10 +93,10 @@ beta:                * - - - - - - - - *
 stable:                                *
 ```
 
-Hooray! Rust 1.5 is done! However, we’ve forgotten one thing: because the six
-weeks have gone by, we also need a new beta of the *next* version of Rust, 1.6.
-So after `stable` branches off of `beta`, the next version of `beta` branches
-off of `nightly` again:
+Γιούχου! Η Rust 1.5 είναι γεγονός! Όμως ξεχάσαμε κάτι: επειδή παρήλθαν οι έξι
+εβδομάδες, χρειαζόμαστε και μια νέα δοκιμαστική έκδοση της *επόμενης* έκδοσης
+της Rust, 1.6. Έτσι, αφότου το `stable` δημιουργηθεί από το `beta`, η επόμενη
+έκδοση του `beta` διακλαδώνεται ξανά από το `nightly`.
 
 ```text
 nightly: * - - * - - * - - * - - * - - * - * - *
@@ -97,57 +106,59 @@ beta:                * - - - - - - - - *       *
 stable:                                *
 ```
 
-This is called the “train model” because every six weeks, a release “leaves the
-station”, but still has to take a journey through the beta channel before it
-arrives as a stable release.
+Αυτό ονομάζεται «μοντέλο τρένου» γιατί κάθε έξι εβδομάδες, μια κυκλοφορία
+«φεύγει από το σταθμό», αλλά πρέπει να κάνει το ταξίδι μέσα από το δοκιμαστικό
+κανάλι πριν φτάσει στον προορισμό της ως σταθερή κυκλοφορία.
 
-Rust releases every six weeks, like clockwork. If you know the date of one Rust
-release, you can know the date of the next one: it’s six weeks later. A nice
-aspect of having releases scheduled every six weeks is that the next train is
-coming soon. If a feature happens to miss a particular release, there’s no need
-to worry: another one is happening in a short time! This helps reduce pressure
-to sneak possibly unpolished features in close to the release deadline.
+Η Rust έχει κυκλοφορίες κάθε έξι εβδομάδες, σα ρολόι. Αν ξέρετε την ημερμοηνία
+μίας κυκλοφορίας της Rust, ξέρετε την ημερομηνια της επόμενης: είναι έξι
+εβδομάδες αργότερα. Μία ωραία πτυχή του να είναι οι κυκλοφορίες προγραμματισμένες
+για κάθε έξι εβδομάδες είναι ότι το επόμενο τρένο έρχεται πάντα σύντομα. Αν μια
+δυνατότητα δεν προλάβει να επιβιβαστεί σε μια συγκεκριμένη κυκλοφορία, δεν υπάρχει
+λόγος ανησυχίας: σύντομα θα έρθει μια νέα κυκλοφορία! Αυτό βοηθάει να μειώνεται
+τυχόν πίεση να τρυπώσουν μη τελειοποιηένες δυνατότητες στην κυκλοφορία λόγω
+κάποιου deadline.
 
-Thanks to this process, you can always check out the next build of Rust and
-verify for yourself that it’s easy to upgrade to: if a beta release doesn’t
-work as expected, you can report it to the team and get it fixed before the
-next stable release happens! Breakage in a beta release is relatively rare, but
-`rustc` is still a piece of software, and bugs do exist.
+Χάρη σε αυτή τη διαδικασία, μπορείτε πάντα να δοκιμάσετε το επόμενο χτίσιμο της
+Rust και να βεβαιωθείτε ότι η αναβάθμιση θα είναι εύκολη: αν η δοκιμαστική
+κυκλοφορία δε λειτουργεί όπως περιμένετε, μπορείτε να το αναφέρετε στην ομάδα
+και θα κοιτάξουν να το φτιάξουν πριν την επόμενη σταθερή κυκλοφορία. Το να χαλάσει
+κάτι σε κάποια δοκιμαστική κυκλοφορία είναι σχετικά σπάνιο, αλλά ο `rustc` είναι
+απλά άλλο ένα λογισμικό, και λάθη συμβαίνουν.
 
-### Unstable Features
+### Ασταθείς Δυνατότητες
 
-There’s one more catch with this release model: unstable features. Rust uses a
-technique called “feature flags” to determine what features are enabled in a
-given release. If a new feature is under active development, it lands on
-`master`, and therefore, in nightly, but behind a *feature flag*. If you, as a
-user, wish to try out the work-in-progress feature, you can, but you must be
-using a nightly release of Rust and annotate your source code with the
-appropriate flag to opt in.
+Υπάρχει ένα ακόμα θέμα με αυτό το μοντέλο κυκλοφορίας: οι ασταθείς δυνατότητες. Η Rust χρησιμοποιεί μια τεχνική που λέγεται «σημαίες
+δυνατοτήτων» για να αποφασίσει ποιες δυνατότητες είναι διαθέσιμες σε κάθε
+δοθείσα κυκλοφορία. Αν μια δυνατότητα είναι ακόμα υπό ενεργή ανάπτυξη,
+καταλήγει στο `master`, και άρα στο νυχτερινό κανάλι, αλλά πίσω από μια *σημαία δυνατότητας*. Αν εσείς, ως χρήστης, θέλετε να δοκιμάσετε μία
+δυνατότητα η οποία είναι υπό κατασκευή, μπορείτε, αλλά πρέπει να
+χρησιμοποιείτε μια νυχτερινή εκδοχή της Rust και να υποσημειώσετε τον
+κώδικά σας με την κατάλληλη σημαία για να συμμετάσχετε.
 
-If you’re using a beta or stable release of Rust, you can’t use any feature
-flags. This is the key that allows us to get practical use with new features
-before we declare them stable forever. Those who wish to opt into the bleeding
-edge can do so, and those who want a rock-solid experience can stick with
-stable and know that their code won’t break. Stability without stagnation.
+Αν χρησιμοποιείτε τη δοκιμασιτκή ή τη σταθερή κυκλοφορία της Rust, δε
+μπορείτε να χρησιμοποιήσετε σημαίες δυνατοτήτων. Αυτό είναι το κλειδί που
+μας επιτρέπει να πάρουμε μια γεύση πρακτικής χρήσης μιας νέας δυνατότητας
+πριν την ανακηρύξουμε σταθερή για πάντα. Όσοι θέλουν να συμμετάσχουν στην
+«κόψη του ξυραφιού» μπορούν να το κάνουν, και όσοι θέλουν μια σταθερή
+εμπειρία μπορούν να μείνουν στο σταθερό κανάλι και να ξέρουν ότι ο κώδικάς
+τους δε θα χαλάσει. Σταθερότητα χωρίς στασιμότητα.
 
-This book only contains information about stable features, as in-progress
-features are still changing, and surely they’ll be different between when this
-book was written and when they get enabled in stable builds. You can find
-documentation for nightly-only features online.
+Αυτό το βιβλίο περιέχει πληροφορίες μόνο για τις σταθερές δυνατότητες,
+καθώς οι υπό ανάπτυξη δυνατότητας αλλάζουν ακόμα και σίγουρα θα έχουν αλλάξει
+διαφορετικές από τη στιγμή της συγγραφής αυτού του βιβλίου ως τη στιγμή της
+σταθερής τους κυκλοφορίας. Μπορείτε να βρείτε τεκμηρίωση των νυχτερινών
+δυνατοτήτων στο διαδίκτυο.
 
-### Rustup and the Role of Rust Nightly
+### Το Rustup και ο Ρόλος της Νυχτερινής Rust
 
-Rustup makes it easy to change between different release channels of Rust, on a
-global or per-project basis. By default, you’ll have stable Rust installed. To
-install nightly, for example:
+Το rustup διεκολύνει την εναλλαγή μεταξύ των καναλιών κυκλοφορίας, είτε καθολικά είτε ανά project. Εκ προεπιλογής, θα έχετε εγκατεστημένη τη σταθερή Rust. Για να εγκαταστήσετε τη νυχτερινή, για παράδειγμα:
 
 ```text
 $ rustup install nightly
 ```
 
-You can see all of the *toolchains* (releases of Rust and associated
-components) you have installed with `rustup` as well. Here’s an example on one
-of your authors’ Windows computer:
+Με το `rustup` μπορείτε επίσης να δείτε όλες τις *εργαλειοθήκες* (κυκλοφορίες της Rust και σχετικά εξαρτήματα) τις οποίες εγκατεστημένες. Ορίστε ένα παράδειγμα του υπολογιστή των συγγραφέων, σε λειτουργικό Windows:
 
 ```powershell
 > rustup toolchain list
@@ -155,6 +166,15 @@ stable-x86_64-pc-windows-msvc (default)
 beta-x86_64-pc-windows-msvc
 nightly-x86_64-pc-windows-msvc
 ```
+
+Όπως μπορείτε να δείτε, η σταθερή εργαλειοθήκη είναι η προεπιλεγμένη. Οι
+περισσότεροι χρήστες της Rust χρησιμοποιούν τη σταθερή τον περισσότερο καιρό.
+Μπορεί να θελήσετε να χρησιμοσποιήσετε τη σταθερή τον περισσότερο καιρό, αλλά
+για ένα συγκεκριμένο project να θέλετε να χρησιμοποιήσετε τη νυχτερινή, επειδή
+ενδιαφέρεστε για κάποια πολύ καινούρια δυνατότητα. Για να το κάνετε αυτό,
+μπορείτε να χρησιμοποιήσετε το `rustup override` στο φάκελο αυτού του project
+ώστε να θέσετε τη νυχτερινή εργαλειοθήκη ως αυτήν που θα επιλέγει το `rustup`
+όταν είστε σ' εκείνο το φάκελο.
 
 As you can see, the stable toolchain is the default. Most Rust users use stable
 most of the time. You might want to use stable most of the time, but use
@@ -166,36 +186,34 @@ nightly toolchain as the one `rustup` should use when you’re in that directory
 $ cd ~/projects/needs-nightly
 $ rustup override set nightly
 ```
+Τώρα, κάθε φορά που καλείτε το `rustc` ή το `cargo` μέσα στο *~/projects/needs-nightly*,
+το `rustup` θα σιγουρευτεί ότι χρησιμοποιείτε τη νυχτερινή Rust, αντί την
+προεπιλεγμένη σας σταθερή Rust. Αυτό είναι αρκετά χρήσιμο όταν έχετε πολλά
+projects σε Rust!
 
-Now, every time you call `rustc` or `cargo` inside of
-*~/projects/needs-nightly*, `rustup` will make sure that you are using nightly
-Rust, rather than your default of stable Rust. This comes in handy when you
-have a lot of Rust projects!
+### Η Διαδικασία RFC και οι Ομάδες
 
-### The RFC Process and Teams
+Λοιπόν, πώς μαθαίνει κανείς για αυτές τις νέες δυνατότητες; Το μοντέλο
+ανάπτυξης της Rust ακολουθεί μια διαδικασία *RFC, ή αλλιώς «Request For Comments»*, δηλαδή *«Αίτημα για Σχολια»*. Αν θέλετε να δείτε κάποια βελτίωση
+στη Rust, μπορείτε να γράψετε μία πρόταση, η οποία λέγεται RFC.
 
-So how do you learn about these new features? Rust’s development model follows
-a *Request For Comments (RFC) process*. If you’d like an improvement in Rust,
-you can write up a proposal, called an RFC.
+Οποιοσδήποτε μπορεί να γράψει ένα RFC για να βελτιώσει τη Rust, και οι
+προτάσεις αξιολογούνται και συζητιούνται από την ομάδα της Rust, η οποία
+διαρθρώνεται από πολλές διαφορετικές υπο-ομάδες ανά θέμα. Υπάρχει μια πλήρης
+λίστα των ομάδων [στον ιστότοπο της Rust](https://www.rust-lang.org/en-US/team.html), η οποία περιλαμβάνει ομάδες για
+κάθε περιοχή του project: σχεδιασμός της γλώσσας, υλοποίηση του μεταγλωττιστή,
+υποδομές, τεκμηρίωση, και άλλα. Η κατάλληλη ομάδα διαβάζει την πρότασή σας
+και τα σχόλια, γράφει μερικά σχόλια και η ίδια, και κάποια στιγμή καταλήγει
+σε μια απόφαση για το αν η προτεινόμενη δυνατόητα εγκρίνεται ή απορρίπτεται.
 
-Anyone can write RFCs to improve Rust, and the proposals are reviewed and
-discussed by the Rust team, which is comprised of many topic subteams. There’s
-a full list of the teams [on Rust’s
-website](https://www.rust-lang.org/en-US/team.html), which includes teams for
-each area of the project: language design, compiler implementation,
-infrastructure, documentation, and more. The appropriate team reads the
-proposal and the comments, writes some comments of their own, and eventually,
-there’s consensus to accept or reject the feature.
+Αν η δυνατότητα εγκριθεί, ανοίγεται ένα νήμα στο αποθετήριο της Rust, και μπορεί κανείς να το υλοποιήσει. Το άτομο που το υλοποιεί μπορεί κάλλιστα να
+μην είναι το άτομο που έκανε την αρχική πρόταση! Όταν η υλοποίηση είναι
+έτοιμη, καταλήγει στον κλάδο `master` πίσω από μία πύλη δυνατοτήτων, όπως
+αναφέραμε στην ενότητα «Ασταθείς Δυνατότητες».
 
-If the feature is accepted, an issue is opened on the Rust repository, and
-someone can implement it. The person who implements it very well may not be the
-person who proposed the feature in the first place! When the implementation is
-ready, it lands on the `master` branch behind a feature gate, as we discussed
-in the “Unstable Features” section.
-
-After some time, once Rust developers who use nightly releases have been able
-to try out the new feature, team members will discuss the feature, how it’s
-worked out on nightly, and decide if it should make it into stable Rust or not.
-If the decision is to move forward, the feature gate is removed, and the
-feature is now considered stable! It rides the trains into a new stable release
-of Rust.
+Μετά από κάποιο διάστημα, όταν οι χρήστες που χρησιμοποιούν τις νυχτερινές
+κυκλοφορίες έχουν δοκιμάσει τη νέα δυνατότητα, τα μέλη της ομάδας θα τη
+συζητήσουν, θα κοιτάξουν πώς πήγε στη νυχτερινή κυκλοφορία, και θα αποφασίσουν
+αν θα συμπεριληφθεί στη σταθερή Rust ή όχι. Αν η απόφαση είναι να προχωρήσει,
+η πύλη δυνατοτήτων αφαιρείται, και η δυνατότητα πλέον θεωρείται σταθερή! Έτσι,
+παίρνει τα τρένα για να καταλήξει σε μια μελλοντική σταθερή κυκλοφορία της Rust.
