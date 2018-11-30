@@ -1,56 +1,61 @@
-# Appendix E - Editions
+# Παράρτημα Ε - Εκδόσεις
 
-Way back in Chapter 1, we saw that `cargo new` adds a bit of metadata to your
-*Cargo.toml* about an `edition`. This appendix talks about what that means!
+Στο Κεφάλαιο 1, είδαμε ότι το `cargo new` προσθέτει μερικά μεταδεδομένα στο αρχείο *Cargo.toml* για κάτι που λέγεται `edition`. Αυτό το παράρτημα μιλάει για το τι σημαίνει αυτό!
 
-The Rust language and compiler have a six-week release cycle. This means users
-get a constant stream of new features. Other programming languages release
-larger changes less often; Rust chooses to release smaller updates more
-frequently. After a while, all of those tiny changes add up. But from release
-to release, it can be hard to look back and say “Wow, between Rust 1.10 and
-Rust 1.31, Rust has changed a lot!”
+Η γλώσσα Rust και ο μεταγλωττιστής της έχουν μια περίοδο κυκλοφορίας έξι
+εβδομάδων. Αυτό σημαίνει ότι οι χρήστες έχουν μια συνεχή εισροή νέων
+δυνατοτήτων. Άλλες γλώσσες προγραμματισμού έχουν μεγαλύτερες περιόδους
+και μεγαλυτερες κυκλοφορίες — η Rust επιλέγει να κυκλοφορεί μικρότερες
+ενημερώσεις με μεγαλύτερη συχνότητα. Μετά από λίγο, αυτές οι μικρές αλλαγές
+αθροίζονται και δίνουν κάτι μεγαλύτερο. Όμως, από κυκλοφορία σε κυκλοφορία,
+είναι δύσκολο να πει κανείς «ουάου, ανάμεσα στις εκδόσεις 1.30 και 1.31, η
+Rust άλλαξε πολύ».
 
-Every two or three years, the Rust team produces a new *edition* of Rust.
-Each edition brings together the features that have landed into a clear
-package with fully updated documentation and tooling. New editions ship
-as part of the usual six-week release process.
+Κάθε δύο ή τρία χρόνια, η ομάδα της Rust παράγει μία νέα *έκδοση* της Rust. Κάθε
+έκδοση συγκεντρώνει τις δυνατότητες που είχαν προστεθεί σε ένα καθαρό πακέτο με
+πλήρως ενημερωμένη τεκμηρίωση και εργαλεία. Οι νέες εκδόσεις κυκλοφορούν ως μέρος
+της πρακτικής των έξι εβδομάδων.
 
-This serves different purposes for different people:
+Αυτό εξυπηρετεί διαφορετικούς σκοπούς για διαφορετικούς ανθρώπους:
 
-* For active Rust users, it brings together incremental changes into an
-  easy-to-understand package.
-* For non-users, it signals that some major advancements have landed, which
-  might make Rust worth another look.
-* For those developing Rust itself, it provides a rallying point for the
-  project as a whole.
+* Για ενεργούς χρήστες της Rust, συγκεντρώνει σταδιακές αλλαγές σε ένα πακέτο
+το οποίο είναι εύκολο στην κατανόησή του.
+* Για μη χρήστες, σηματοδοτεί ότι έγινε σημαντική πρόοδος, και ίσως αυτό τους
+κάνει να ρίξουν μια ματιά στη Rust.
+* Για εκείνους που αναπτύσσουν την ίδια τη Rust, προσφέρει ένα στόχο για το
+project συνολικά.
 
-At the time of writing, there are two editions: Rust 2015 and Rust 2018.
-This book is written using Rust 2018 edition idioms.
+Τη στιγμή που γράφεται αυτό το κείμενο, υπάρχουν δύο εκδόσεις: η Rust του 2015
+και η Rust του 2018. Αυτό το βιβλίο είναι γραμμένο με τα ιδιώματα της Rust του
+2018.
 
-The `edition` key in *Cargo.toml* indicates which edition your code should be
-compiled under. If the key does not exist, it defaults to `2015` for backwards
-compatibility reasons.
+Το κλειδί `edition` στο *Cargo.toml* σηματοδοτεί την έκδοση σύμφωνα με την
+οποία  πρέπει να μεταγλωττιστεί ο κώδικάς σας. Εάν το κλειδί δεν υπάρχει, η
+προεπιλογή είναι `2015` για λόγους συμβατότητας προς τα πίσω.
 
-Each project can choose to opt in to an edition other than the default 2015
-edition. By doing so, editions can contain incompatible changes, such as adding
-a new keyword that might conflict with identifiers in code or turning warnings
-into errors. But unless you opt in to those changes, your code will continue to
-compile even as you upgrade the version of the Rust compiler that you use. All
-Rust compiler versions support any edition that existed prior to that
-compiler’s release, and they can link crates of any supported editions
-together. Edition changes only affect the way the compiler initially parses
-code. Therefore, if you’re using Rust 2015 and one of your dependencies uses
-Rust 2018, your project will compile and be able to use that dependency. The
-opposite situation, where your project uses Rust 2018 and a dependency uses
-Rust 2015, works as well.
+Κάθε project μπορεί να επιλέξει να συμμετάσχει σε μια έκδοση άλλη από την
+προεπιλεγμένη 2015. Με αυτόν τον τρόπο, οι εκδόσεις μπορούν να περιέχουν αλλαγές
+οι οποίες είναι ασύμβατες μεταξύ τους, όπως για παράδειγμα η προσθήκη μίας νέας
+λέξης-κλειδί η οποία μπορεί να έρχεται σε σύγκρουση με υπάρχοντα αναγνωριστικά,
+ή η αλλαγή κάποιων προειδοποιήσεων σε σφάλματα μεταγλώττισης. Όμως εάν δεν
+επιλέξετε να συμμετάσχετε σε αυτές τις αλλαγές, ο κώδικάς σας θα συνεχίσει να
+μεταγλωττίζεται ακόμα και όταν αναβαθμίζετε την έκδοηση του μεταγλωττιστή που
+χρησιμοποιείτε. Όλες οι εκδόσεις του μεταγλωττιστή της Rust υποστηρίζουν κάθε
+έκδοση που υπήρξε πριν από την κυκλοφορία του, και μπορούν να συνδέσουν κιβώτια
+όλων των υποστηριζόμενων εκδόσεων. Η έκδοση επηρεάζει μόνο τον τρόπο με τον
+οποίο ο μεταγλωττιστής επεξεργάζεται αρχικά τον κώδικα. Έτσι, εάν χρησιμοποιείτε
+τη Rust του 2015 και μία εξάρτησή σας χρησιμοποιεί τη Rust του 2018, το project
+σας θα μπορεί να μεταγλωττιστή και να χρησιμοποιήσει εκείνη την εξάρτηση. Η
+αντίθετη κατάσταση, στην οποία το project σας χρησιμοποιεί τη Rust του 2018 και
+κάποια εξάρτηση χρησιμοποιεί τη Rust του 2015, λειτουργεί επίσης.
 
-To be clear: most features will be available on all editions. Developers using
-any edition of Rust will continue to see improvements as new stable releases
-are made. In some cases, however, mainly when new keywords are added, there may
-be new features that are only available in later editions. You only need to
-switch editions if you want to take advantage of such features.
+Για να είμαστε σαφείς: οι περισσότερες δυνατότητες θα είναι διαθέσιμες σε όλες
+τις εκδόσεις. Οι προγραμματιστές που χρησιμοποιούν οποιαδήποτε έκδοη της Rust θα
+συνεχίσουν να βλέπουν βελτιώσεις με κάθε νέα σταθερή κυκλοφορία. Σε κάποιες
+περιπτώσεις, όμως, ιδίως όταν προστίθενται νέες λέξεις-κλειδιά, ίσως υπάρξουν
+δυνατότητες οι οποίες είναι διαθέσιμες μόνο σε νεότερες εκδόσεις. Το μόνο που
+χρειάζεται είναι να αλλάξετε έκδοση προκειμένου να εκμεταλλευτείτε τέτοιες
+δυνατότητες.
 
-For more details, the [Edition
-Guide](https://rust-lang-nursery.github.io/edition-guide/) is a complete
-book about editions, including how to automatically upgrade your code to
-a new edition via `cargo fix`.
+Για περισσότερες πληροφορίες, ο [Οδηγός
+Εκδόσεων](https://rust-lang-nursery.github.io/edition-guide/) είναι ένα πλήρες βιβλίο για τις εκδόσεις, το οποίο συμπεριλαμβάνει και το πώς να αναβαθμίσετε τον κώδικά σας σε καινούρια έκδοση με χρήση του `cargo fix`.
