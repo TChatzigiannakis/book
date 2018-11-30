@@ -1,43 +1,48 @@
-# Appendix D - Useful Development Tools
+# Παράρτημα Δ - Χρήσιμα Εργαλεία Ανάπτυξης
 
-In this appendix, we’ll talk about tools provided by the Rust project that are
-useful when developing Rust code.
+Στο παρόν παράρτημα, θα μιλήσουμε για τα εργαλεία που παρέχονται από το Rust
+project τα οποία είναι χρήσιμα για ανάπτυξη κώδικα Rust.
 
-## Automatic Formatting with `rustfmt`
+## Αυτόματη Διαμόρφωση με το `rustfmt`
 
-The tool `rustfmt` reformats your code according to the community code style.
-Many projects use `rustfmt` to prevent arguments about which style to use when
-writing Rust: everyone formats their code with the tool!
+Το εργαλείο `rustfmt` αναδιαμορφώνει τον κώδικά σας σύμφωνα με το στυλ της
+κοινότητας. Πολλά projects χρησιμοποιούν το `rustfmt` προκειμένου να μη
+δημιουργούνται διαφωνίες ως προς το στυλ που πρέπει να χρησιμοποιεί κανείς
+όταν γράφει `Rust`: όλοι διαμορφώνουν τον κώδικά τους με αυτό το εργαλείο!
 
-The `rustfmt` tool is not yet at the quality of a version 1.0 release, but
-a preview is available for you to use in the meantime. Please give it a try and
-let us know how it goes!
+Το `rustfmt` δεν έχει φτάσει ακόμα τα επίπεδα ποιότητας μιας έκδοσης 1.0,
+αλλά ένα preview του είναι διαθέσιμο για χρήση στο μεταξύ. Παρακαλούμε
+δοκιμάστε το και πείτε μας πώς σας φάνηκε!
 
-To install `rustfmt`:
+Για να εγκαταστήσετε το `rustfmt`:
 
 ```text
 $ rustup component add rustfmt-preview
 ```
 
-This will give you both `rustfmt` and `cargo-fmt`, similar to how Rust gives
-you both `rustc` and `cargo`. To take any Cargo project and format it:
+Αυτό θα σας δώσει και το `rustfmt` αλλά και το `cargo-fmt`, κατί παρόμοιο
+με το πώς η Rust σας δίνει και το `rustc` αλλά και το `cargo`. Για να πάρετε ένα
+οποιοδήποτε Cargo project και να το διαμορφώσετε:
 
 ```text
 $ cargo fmt
 ```
 
-Running this command will reformat all of the Rust code in the current crate.
-This should only change the code style, not the code semantics. For more
-information on `rustfmt`, see [its documentation][rustfmt].
+Η εκτέλεση αυτής της εντολής θα αναδιαμορφώσει όλο τον κώδικα Rust στο τρέχον
+κιβώτιο. Η αλλαγή αυτή θα πρέπει να αφορά μόνο το στυλ του κώδικα, όχι τη
+σημασιολογία του.
+
+Για περισσότερες πληροφορίες σχετικά με το `rustfmt`, δείτε
+[την τεκμηρίωσή του][rustfmt].
 
 [rustfmt]: https://github.com/rust-lang-nursery/rustfmt
 
-## Fix Up Your Code with `rustfix`
+## Διορθώστε τον Κώδικά σας με το `rustfix`
 
-If you’ve written code in Rust, you’ve probably seen compiler warnings. For
-example, consider this code:
+Αν έχετε γράψει κώδικα σε Rust, είναι πιθανό να έχετε δει προειδοποιήσεις από
+το μεταγλωττιστή. Πάρτε για παράδειγμα αυτόν τον κώδικα:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Όνομα αρχείου: src/main.rs</span>
 
 ```rust
 fn do_something() {}
@@ -49,8 +54,8 @@ fn main() {
 }
 ```
 
-Here, we’re calling the `do_something` function 100 times, but we never use the
-variable `i` in the body of the `for` loop. Rust warns us about that:
+Εδώ, καλούμε τη συνάρτηση `do_something()` 100 φορές, αλλά δε χρησιμοποιούμε ποτέ
+τη μεταβλητή `i` στο σώμα του βρόχου `for`. Η Rust μας προειδοποιεί γι' αυτό;
 
 ```text
 $ cargo build
@@ -66,10 +71,10 @@ warning: unused variable: `i`
     Finished dev [unoptimized + debuginfo] target(s) in 0.50s
 ```
 
-The warning suggests that we use `_i` as a name instead: the underscore
-indicates that we intend for this variable to be unused. We can automatically
-apply that suggestion using the `rustfix` tool by running the command `cargo
-fix`:
+Η προειδοποίηση προτείνει να χρησιμοποιήσουμε το `_i` ως όνομα: η κάτω παύλα
+σηματοδοτεί ότι αφήνουμε εν γνώσει μας αχρησιμοποίητη αυτή τη μεταβλητή. Μπορούμε
+να εφαρμόσουμε αυτόματα την πρόταση με χρήση του `rustfmt` τρέχοντας την εντολή
+`cargo fix`:
 
 ```text
 $ cargo fix
@@ -78,10 +83,9 @@ $ cargo fix
     Finished dev [unoptimized + debuginfo] target(s) in 0.59s
 ```
 
-If we look at *src/main.rs* again, we’ll see that `cargo fix` has changed the
-code:
+Αν κοιτάξουμε το *src/main.rs* ξανά, θα δούμε ότι το `cargo fix` άλλαξε τον κώδικα:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Όνομα αρχείου: src/main.rs</span>
 
 ```rust
 fn do_something() {}
@@ -93,37 +97,37 @@ fn main() {
 }
 ```
 
-The `for` loop variable is now named `_i`, and the warning will no longer
-appear.
+Η μεταβλητή του βρόχου `for` τώρα λέγεται `_i`, και η προειδοποίηση δε θα εμφανίζεται
+πια.
 
-The `cargo fix` command can also be used to transition your code between
-different editions of Rust. Editions are covered in Appendix E.
+Η εντολή `cargo fix` μπορεί επίσεης να χρησιμοποιηθεί για να μεταφέρετε τον κώδικά σας
+μεταξύ διαφορετικών εκδόσεων της Rust. Οι εκδόσεις καλύπτονται αναλυτικά στο παράρτημα Ε.
 
-## More Lints with `clippy`
+## Περισσότερα Lints με το `clippy`
 
-The `clippy` tool is a collection of lints to catch common mistakes and improve
-your Rust code.
+Το εργαλείο `clippy` είναι μια συλλογή από lints τα οποία πιάνουν συχνά λάθη και βελτιώνουν
+τον κώδικα Rust σας.
 
-The `clippy` tool is not yet at the quality of a version 1.0 release, but a
-preview is available for you to use in the meantime. Please give it a try and
-let us know how it goes!
+Το `clippy` δεν έχει φτάσει ακόμα τα επίπεδα ποιότητας μιας έκδοσης 1.0,
+αλλά ένα preview του είναι διαθέσιμο για χρήση στο μεταξύ. Παρακαλούμε
+δοκιμάστε το και πείτε μας πώς σας φάνηκε!
 
-To install `clippy`:
+Για να εγκαταστήσετε το `clippy`:
 
 ```text
 $ rustup component add clippy-preview
 ```
 
-To take any Cargo project and run clippy’s lints on it:
+Για να πάρετε ένα οποιοδήποτε Cargo project και να τρέξετε πάνω του τα lints του clippy:
 
 ```text
 $ cargo clippy
 ```
 
-For example, if you write a program that uses an approximation of a
-mathematical constant such as pi, as this program does:
+Για παράδειγμα, εάν γράφετε ένα πρόγραμμα το οποίο χρησιμοποιεί μια προσέγγιση μιας
+μαθηματικής σταθεράς όπως το *π*, όπως κάνει αυτό το πρόγραμμα:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Όνομα αρχείου: src/main.rs</span>
 
 ```rust
 fn main() {
@@ -133,7 +137,7 @@ fn main() {
 }
 ```
 
-Running `cargo clippy` on this project will result in this error:
+Η εκτέλεση του `cargo clippy` σε αυτό το project θα οδηγήσει στο εξής σφάλμα:
 
 ```text
 error: approximate value of `f{32, 64}::consts::PI` found. Consider using it directly
@@ -146,11 +150,11 @@ error: approximate value of `f{32, 64}::consts::PI` found. Consider using it dir
   = help: for further information visit https://rust-lang-nursery.github.io/rust-clippy/v0.0.212/index.html#approx_constant
 ```
 
-This lets you know that Rust has this constant defined more precisely, and that
-your program would be more correct if you used the constant instead. This code
-doesn’t result in any errors or warnings from `clippy`:
+Αυτό σας γνωστοποιεί ότι η Rust έχει ήδη αυτή τη σταθερά ορισμένη με μεγαλύτερη ακρίβεια,
+και ότι το πρόγραμμά σας θα ήταν πιο σωστό εάν χρησιμοποιούσατε εκείνη τη σταθερά. Ο
+παρακάτω κώδικας δεν προκαλεί σφάλματα ή προειδοποιήσεις από το `clippy`:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Όνομα αρχείου: src/main.rs</span>
 
 ```rust
 fn main() {
@@ -160,34 +164,36 @@ fn main() {
 }
 ```
 
-For more information on `clippy`, see [its documentation][clippy].
+Για περισσότερες πληροφορίες σχετικά με το `clippy`, δείτε [την τεκμηρίωσή του][clippy].
 
 [clippy]: https://github.com/rust-lang-nursery/rust-clippy
 
-## IDE Integration Using the Rust Language Server
+## Ενσωμάτωση σε Ολοκληρωμένα Περιβάλλοντα Αναπτυξης με Χρήση του Rust Language Server
 
-To help IDE integration, the Rust project distributes the `rls`, which stands
-for the Rust Language Server. This tool speaks the [Language Server
-Protocol][lsp], which is a specification for IDEs and programming languages to
-communicate with each other. The `rls` can be used by different clients, such
-as [the Rust plugin for Visual Studio: Code][vscode].
+Για να βοηθήσει την ενσωμάτωση σε ολοκληρωμένα περιβάλλοντα ανάπτυξης, το Rust
+project κυκλοφορεί το `rls`, που σημαίνει "Rust Language Server". Αυτό το
+εργαλείο μιλάει τη γλώσσα του [Language Server Protocol][lsp], το οποίο είναι
+μια προδιαγραφή που διευκολύνει τη συνομιλία μεταξύ ολοκληρωμένων περιβαλλόντων ανάπτυξης και γλωσσών προγραμματισμού. Το `rls` μπορεί να χρησιμοποιηθεί από
+διαφορετικούς πελάτες, όπως το [Rust plugin για το Visual Studio Code][vscode].
 
 [lsp]: http://langserver.org/
 [vscode]: https://marketplace.visualstudio.com/items?itemName=rust-lang.rust
 
-The `rls` is not yet at the quality of a version 1.0 release, but a preview is
-available for you to use in the meantime. Please give it a try and let us know
-how it goes!
+Το `rls` δεν έχει φτάσει ακόμα τα επίπεδα ποιότητας μιας έκδοσης 1.0,
+αλλά ένα preview του είναι διαθέσιμο για χρήση στο μεταξύ. Παρακαλούμε
+δοκιμάστε το και πείτε μας πώς σας φάνηκε!
 
-To install the `rls`:
+Για να εγκαταστήσετε το `rls`:
 
 ```text
 $ rustup component add rls-preview
 ```
 
-Then install the language server support in your particular IDE, and you will
-gain abilities such as autocompletion, jump to definition, and inline errors.
+Στη συνέχεια, εγκαταστήστε την υποστήριξη για language servers στο
+ολοκληρωμένο περιβάλλον ανάυπτξης το οποίο χρησιμοποιείτε, και έτσι θα
+αποκτήσετε δυνατότητες όπως η αυτόματη συμπλήρωση, η μετάβαση σε ορισμούς, και
+μηνύματα σφάλματος μέσα στο κείμενο.
 
-For more information on the `rls`, see [its documentation][rls].
+Για περισσότερες πληροφορίες σχετικά με το `rls`, δείτε [την τεκμηρίωσή του][rls].
 
 [rls]: https://github.com/rust-lang-nursery/rls
