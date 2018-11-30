@@ -1,7 +1,8 @@
-## Appendix F: Translations of the Book
+## Παράρτημα ΣΤ: Μεταφράσεις του Βιβλίου
 
-For resources in languages other than English. Most are still in progress; see
-[the Translations label][label] to help or let us know about a new translation!
+Για πηγές σε γλώσσες εκτός της αγγλικής. Οι περισσότερες μεταφράσεις είναι ακόμα
+υπό κατασκευή - δειτε [την ετικετα Translations][label] για να μας βοηθήσετε ή να
+μας γνωστοποιήσετε μία νέα μετάφραση!
 
 [label]: https://github.com/rust-lang/book/issues?q=is%3Aopen+is%3Aissue+label%3ATranslations
 
