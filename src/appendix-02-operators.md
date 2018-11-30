@@ -1,205 +1,200 @@
-## Appendix B: Operators and Symbols
+## Παράρτημα Β: Τελεστές και Σύμβολα
 
-This appendix contains a glossary of Rust’s syntax, including operators and
-other symbols that appear by themselves or in the context of paths, generics,
-trait bounds, macros, attributes, comments, tuples, and brackets.
+Το παρόν παράρτημα περιέχει ένα γλωσσάρι του συντακτικού της Rust, συμπεριλαμβανομένων
+τελεστών και άλλων συμβόλων τα οποία εμφανίζονται μόνα τους ή στο πλαίσιο διαδρομών,
+γενικών τύπων ή συναρτήσεων, ορίων χαρακτηριστικών, μακροεντολών, γνωρισμάτων, σχολίων,
+πλειάδων, και αγκίστρων.
 
-### Operators
+### Τελεστές
 
-Table B-1 contains the operators in Rust, an example of how the operator would
-appear in context, a short explanation, and whether that operator is
-overloadable. If an operator is overloadable, the relevant trait to use to
-overload that operator is listed.
+Ο πίνακας Β-1 περιέχει τους τελετές στη Rust, ένα παράδειγμα του πώς ο τελεστής θα εμφανιζόταν
+στο πλαίσιο χρήσης του, μια σύντομη επεξήγηση, και το αν ο εν λόγω τελεστής μπορεί να υπερφορτωθεί.
+Εάν ο τελεστής μπορεί να υπερφορτωθεί, αναφέρεται το σχετικό χαρακτηριστικό που μπορεί να χρησιμοποιηθεί
+για την υπερφόρτωσή του.
 
-<span class="caption">Table B-1: Operators</span>
+<span class="caption">Πίνακας B-1: Τελεστές</span>
 
-| Operator | Example | Explanation | Overloadable? |
+| Τελεστής | Παράδειγμα | Επεξήγηση | Υπερφόρτωση; |
 |----------|---------|-------------|---------------|
-| `!` | `ident!(...)`, `ident!{...}`, `ident![...]` | Macro expansion | |
-| `!` | `!expr` | Bitwise or logical complement | `Not` |
-| `!=` | `var != expr` | Nonequality comparison | `PartialEq` |
-| `%` | `expr % expr` | Arithmetic remainder | `Rem` |
-| `%=` | `var %= expr` | Arithmetic remainder and assignment | `RemAssign` |
-| `&` | `&expr`, `&mut expr` | Borrow | |
-| `&` | `&type`, `&mut type`, `&'a type`, `&'a mut type` | Borrowed pointer type | |
-| `&` | `expr & expr` | Bitwise AND | `BitAnd` |
-| `&=` | `var &= expr` | Bitwise AND and assignment | `BitAndAssign` |
-| `&&` | `expr && expr` | Logical AND | |
-| `*` | `expr * expr` | Arithmetic multiplication | `Mul` |
-| `*=` | `var *= expr` | Arithmetic multiplication and assignment | `MulAssign` |
-| `*` | `*expr` | Dereference | |
-| `*` | `*const type`, `*mut type` | Raw pointer | |
-| `+` | `trait + trait`, `'a + trait` | Compound type constraint | |
-| `+` | `expr + expr` | Arithmetic addition | `Add` |
-| `+=` | `var += expr` | Arithmetic addition and assignment | `AddAssign` |
-| `,` | `expr, expr` | Argument and element separator | |
-| `-` | `- expr` | Arithmetic negation | `Neg` |
-| `-` | `expr - expr` | Arithmetic subtraction | `Sub` |
-| `-=` | `var -= expr` | Arithmetic subtraction and assignment | `SubAssign` |
-| `->` | `fn(...) -> type`, <code>\|...\| -> type</code> | Function and closure return type | |
-| `.` | `expr.ident` | Member access | |
-| `..` | `..`, `expr..`, `..expr`, `expr..expr` | Right-exclusive range literal | |
-| `..=` | `..=expr`, `expr..=expr` | Right-inclusive range literal | |
-| `..` | `..expr` | Struct literal update syntax | |
-| `..` | `variant(x, ..)`, `struct_type { x, .. }` | “And the rest” pattern binding | |
-| `...` | `expr...expr` | In a pattern: inclusive range pattern | |
-| `/` | `expr / expr` | Arithmetic division | `Div` |
-| `/=` | `var /= expr` | Arithmetic division and assignment | `DivAssign` |
-| `:` | `pat: type`, `ident: type` | Constraints | |
-| `:` | `ident: expr` | Struct field initializer | |
-| `:` | `'a: loop {...}` | Loop label | |
-| `;` | `expr;` | Statement and item terminator | |
-| `;` | `[...; len]` | Part of fixed-size array syntax | |
-| `<<` | `expr << expr` | Left-shift | `Shl` |
-| `<<=` | `var <<= expr` | Left-shift and assignment | `ShlAssign` |
-| `<` | `expr < expr` | Less than comparison | `PartialOrd` |
-| `<=` | `expr <= expr` | Less than or equal to comparison | `PartialOrd` |
-| `=` | `var = expr`, `ident = type` | Assignment/equivalence | |
-| `==` | `expr == expr` | Equality comparison | `PartialEq` |
-| `=>` | `pat => expr` | Part of match arm syntax | |
-| `>` | `expr > expr` | Greater than comparison | `PartialOrd` |
-| `>=` | `expr >= expr` | Greater than or equal to comparison | `PartialOrd` |
-| `>>` | `expr >> expr` | Right-shift | `Shr` |
-| `>>=` | `var >>= expr` | Right-shift and assignment | `ShrAssign` |
-| `@` | `ident @ pat` | Pattern binding | |
-| `^` | `expr ^ expr` | Bitwise exclusive OR | `BitXor` |
-| `^=` | `var ^= expr` | Bitwise exclusive OR and assignment | `BitXorAssign` |
-| <code>\|</code> | <code>pat \| pat</code> | Pattern alternatives | |
-| <code>\|</code> | <code>expr \| expr</code> | Bitwise OR | `BitOr` |
-| <code>\|=</code> | <code>var \|= expr</code> | Bitwise OR and assignment | `BitOrAssign` |
-| <code>\|\|</code> | <code>expr \|\| expr</code> | Logical OR | |
-| `?` | `expr?` | Error propagation | |
+| `!` | `ident!(...)`, `ident!{...}`, `ident![...]` | Επέκταση μακροεντολής | |
+| `!` | `!expr` | Δυαδικό ή λογικό συμπλήρωμα | `Not` |
+| `!=` | `var != expr` | Σύγρκιση ανισότητας | `PartialEq` |
+| `%` | `expr % expr` | Αριθμητικό υπόλοιπο | `Rem` |
+| `%=` | `var %= expr` | Αριθμητικό υπόλοιπο και ανάθεση | `RemAssign` |
+| `&` | `&expr`, `&mut expr` | Δανεισμός | |
+| `&` | `&type`, `&mut type`, `&'a type`, `&'a mut type` | Τύπος δείκτη δανεισμού | |
+| `&` | `expr & expr` | Δυαδικό AND | `BitAnd` |
+| `&=` | `var &= expr` | Δυαδικό AND και ανάθεση | `BitAndAssign` |
+| `&&` | `expr && expr` | Λογικό AND | |
+| `*` | `expr * expr` | Αριθμητικός πολλαπλασιασμός | `Mul` |
+| `*=` | `var *= expr` | Αριθμητικός πολλαπλασιασμός και ανάθεση | `MulAssign` |
+| `*` | `*expr` | Αναφορά | |
+| `*` | `*const type`, `*mut type` | Πρωτογενής δείκτης | |
+| `+` | `trait + trait`, `'a + trait` | Σύνθετος περιορισμός τύπου | |
+| `+` | `expr + expr` | Αριθμητική πρόσθεση | `Add` |
+| `+=` | `var += expr` | Αριθμητική πρόσθεση και ανάθεση | `AddAssign` |
+| `,` | `expr, expr` | Διαχωριστικό ορισμάτων και στοιχείων | |
+| `-` | `- expr` | Αριθμητική άρνηση | `Neg` |
+| `-` | `expr - expr` | Αριθμητική αφαίρεση | `Sub` |
+| `-=` | `var -= expr` | Αριθμητική αφαίρεση και ανάθεση | `SubAssign` |
+| `->` | `fn(...) -> type`, <code>\|...\| -> type</code> | Τύπος επιστροφής συνάρτησης και κλεισίματος | |
+| `.` | `expr.ident` | Πρόσβαση σε μέλος | |
+| `..` | `..`, `expr..`, `..expr`, `expr..expr` | Κυριολεκτικό διαστήματος με ανοιχτό δεξιό άκρο | |
+| `..=` | `..=expr`, `expr..=expr` | Κυριολεκτικό διαστήματος με κλειστό δεξιό άκρο | |
+| `..` | `..expr` | Συντακτικό ενημέρωσης κυριολεκτικού δομής | |
+| `..` | `variant(x, ..)`, `struct_type { x, .. }` | Μοτίβο «και τα υπόλοιπα» | |
+| `...` | `expr...expr` | Μέσα σε μοτίβο: περιεκτικό διάστημα | |
+| `/` | `expr / expr` | Αριθμητική διαίρεση | `Div` |
+| `/=` | `var /= expr` | Αριθμητική διαίρεση και ανάθεση | `DivAssign` |
+| `:` | `pat: type`, `ident: type` | Περιορισμοί | |
+| `:` | `ident: expr` | Απόδοση αρχικής τιμής σε πεδίο δομής | |
+| `:` | `'a: loop {...}` | Ετικέτα βρόχου | |
+| `;` | `expr;` | Τερματισμός πρότασης και αντικειμένου | |
+| `;` | `[...; len]` | Μέρος του συντακτικού για πίνακες σταθερού μεγέθους | |
+| `<<` | `expr << expr` | Αριστερόστροφη ολίσθηση | `Shl` |
+| `<<=` | `var <<= expr` | Αριστερόστροφη ολίσθηση και ανάθεση | `ShlAssign` |
+| `<` | `expr < expr` | Σύγκριση «μικρότερο από» | `PartialOrd` |
+| `<=` | `expr <= expr` | Σύγρκιση «μικρότερο από ή ίσο με» | `PartialOrd` |
+| `=` | `var = expr`, `ident = type` | Ανάθεση/ισοτιμία | |
+| `==` | `expr == expr` | Σύγκριση ισότητας | `PartialEq` |
+| `=>` | `pat => expr` | Μέρος του συντακτικού υποπερίπτωσης κατά το ταίριασμα | |
+| `>` | `expr > expr` | Σύγκριση «μεγαλύτερο από» | `PartialOrd` |
+| `>=` | `expr >= expr` | Σύγκριση «μεγαλύτερο από ή ίσο με» | `PartialOrd` |
+| `>>` | `expr >> expr` | Δεξιόστροφη ολίσθηση | `Shr` |
+| `>>=` | `var >>= expr` | Δεξιόστροφη ολίσθηση και ανάθεση | `ShrAssign` |
+| `@` | `ident @ pat` | Ονοματοδοσία μέσα σε μοτίβο | |
+| `^` | `expr ^ expr` | Δυαδικό αποκλειστικό OR | `BitXor` |
+| `^=` | `var ^= expr` | Διαδικό αποκλειστικό OR και ανάθεση | `BitXorAssign` |
+| <code>\|</code> | <code>pat \| pat</code> | Εναλλακτικά μοτία | |
+| <code>\|</code> | <code>expr \| expr</code> | Δυαδικό OR | `BitOr` |
+| <code>\|=</code> | <code>var \|= expr</code> | Δυαδικό OR και ανάθεση | `BitOrAssign` |
+| <code>\|\|</code> | <code>expr \|\| expr</code> | Λογικό OR | |
+| `?` | `expr?` | Διάδοση σφάλματος | |
 
-### Non-operator Symbols
+### Άλλα Σύμβολα
 
-The following list contains all non-letters that don’t function as operators;
-that is, they don’t behave like a function or method call.
+Η παρακάτω λίστα περιλαμβάνει όλα τα μη-γράμματα που δε λειτουργούν ως τελεστές — δηλαδή δε συμπεριφέρονται ως κλήσεις συνάρτησης ή μεταβλητής.
 
-Table B-2 shows symbols that appear on their own and are valid in a variety of
-locations.
+Ο πίνακας Β-2 δείχνει σύμβολα τα οποία εμφανίζονται μόνα τους και είναι έγκυρα σε διάφορα σημεία.
 
-<span class="caption">Table B-2: Stand-Alone Syntax</span>
+<span class="caption">Πίνακας Β-2: Συντακτικό σε Αυτονομία</span>
 
-| Symbol | Explanation |
+| Σύμβολο | Επεξήγηση |
 |--------|-------------|
-| `'ident` | Named lifetime or loop label |
-| `...u8`, `...i32`, `...f64`, `...usize`, etc. | Numeric literal of specific type |
-| `"..."` | String literal |
-| `r"..."`, `r#"..."#`, `r##"..."##`, etc. | Raw string literal, escape characters not processed |
-| `b"..."` | Byte string literal; constructs a `[u8]` instead of a string |
-| `br"..."`, `br#"..."#`, `br##"..."##`, etc. | Raw byte string literal, combination of raw and byte string literal |
-| `'...'` | Character literal |
-| `b'...'` | ASCII byte literal |
-| <code>\|...\| expr</code> | Closure |
-| `!` | Always empty bottom type for diverging functions |
-| `_` | “Ignored” pattern binding; also used to make integer literals readable |
+| `'ident` | Ονοματισμένη διάρκεια ζωής ή ετικέτα βρρόχου |
+| `...u8`, `...i32`, `...f64`, `...usize`, etc. | Αριθμητικό κυριολεκτικό συγκεκριμένου τύπου |
+| `"..."` | Αλφαριθμητικό κυριολεκτικό |
+| `r"..."`, `r#"..."#`, `r##"..."##`, etc. | Πρωτογενές αλφαριθμητικό κυριολεκτικό, όπου οι χαρακτήρες απόδρασης δεν υπόκεινται σε επεξεργασία |
+| `b"..."` | Αλφαριθμητικό κυριολεκτικό από bytes — δημιουργεί `[u8]` αντί για αλφαριθμητικό |
+| `br"..."`, `br#"..."#`, `br##"..."##`, etc. | Πρωτογενές αλφαριθημητικό κυριολεκτικό, συνδυασμός πρωοτεγνούς κυριολεκτικού και κυριολεκτικού από bytes|
+| `'...'` | Κυριολεκτικό χαρακτήρα |
+| `b'...'` | Κυριολεκτικό byte από το σύνολο ASCII |
+| <code>\|...\| expr</code> | Κλείσιμο |
+| `!` | Κάτω τύπος (χωρίς τιμές), για συναρτήσεις που δεν τερματίζουν |
+| `_` | Μοτίβο για τις περιπτώσεις στις οποίες δε μας ενδιαφέρει η ονοματοδοσία — χρησιμοποιείται επίσης για αύξηση αναγνωσιμότητας σε ακέραια κυριολεκτικά |
 
-Table B-3 shows symbols that appear in the context of a path through the module
-hierarchy to an item.
+Ο Πίνακας Β-3 δείχνει σύμβολα τα οποία εμφανίζονται στο πλαίσιο μιας διαδρομής μέσα στην ιεραρχία τμημάτων προς ένα αντικείμενο.
 
-<span class="caption">Table B-3: Path-Related Syntax</span>
+<span class="caption">Πίνακας Β-3: Συντακτικό Σχετικό με Διαδρομές</span>
 
-| Symbol | Explanation |
+| Σύμβολο | Επεξήγηση |
 |--------|-------------|
-| `ident::ident` | Namespace path |
-| `::path` | Path relative to the crate root (i.e., an explicitly absolute path) |
-| `self::path` | Path relative to the current module (i.e., an explicitly relative path).
-| `super::path` | Path relative to the parent of the current module |
-| `type::ident`, `<type as trait>::ident` | Associated constants, functions, and types |
-| `<type>::...` | Associated item for a type that cannot be directly named (e.g., `<&T>::...`, `<[T]>::...`, etc.) |
-| `trait::method(...)` | Disambiguating a method call by naming the trait that defines it |
-| `type::method(...)` | Disambiguating a method call by naming the type for which it’s defined |
-| `<type as trait>::method(...)` | Disambiguating a method call by naming the trait and type |
+| `ident::ident` | Διαδρομή χώρου ονομάτων |
+| `::path` | Διαδρομή σε σχέση με τη ρίζα του κιβωτίου (δηλ., μία ρητά απόλυτη διαδρομή) |
+| `self::path` | Διαδρομή σε σχέση με το τρέχον τμήμα (δηλ., μια ρητά σχετική διαδρομή).
+| `super::path` | Διαδρομή σχετική με το γονέα του τρέχοντος τμήματος |
+| `type::ident`, `<type as trait>::ident` | Συσχετισμένες σταθερές, συναρτήσεις, και τύποι |
+| `<type>::...` | Συσχετισμένο αντικείμενο για έναν τύπο που δε μπορεί να ονοματιστεί άμεσα (π.χ., `<&T>::...`, `<[T]>::...`, κλπ.) |
+| `trait::method(...)` | Αποσαφήνιση κλήσης μεθόδου μέσω της αναφοράς του ονόματος του χαρακτηριστικού το οποίο την ορίζει |
+| `type::method(...)` | Αποσαφήνιση κλήσης μεθόδου μέσω της αναφοράς του τύπου για τον οποίο ορίζεται |
+| `<type as trait>::method(...)` | Αποσαφήνιση κλήσης μεθόδου μέσω της ανφοράς του χαρακτηριστικού και του τύπου |
 
-Table B-4 shows symbols that appear in the context of using generic type
-parameters.
+Ο Πίνακας Β-4 δείχνει σύμβολα τα οποία εμφανίζονται στο πλαίσιο της χρήσης παραμέτρων γενικευμένων τύπων.
 
-<span class="caption">Table B-4: Generics</span>
+<span class="caption">Πίνακας Β-4: Γενικεμένος Προγραμματισμός</span>
 
-| Symbol | Explanation |
+| Σύμβολο | Επεξήγηση |
 |--------|-------------|
-| `path<...>` | Specifies parameters to generic type in a type (e.g., `Vec<u8>`) |
-| `path::<...>`, `method::<...>` | Specifies parameters to generic type, function, or method in an expression; often referred to as turbofish (e.g., `"42".parse::<i32>()`) |
-| `fn ident<...> ...` | Define generic function |
-| `struct ident<...> ...` | Define generic structure |
-| `enum ident<...> ...` | Define generic enumeration |
-| `impl<...> ...` | Define generic implementation |
-| `for<...> type` | Higher-ranked lifetime bounds |
-| `type<ident=type>` | A generic type where one or more associated types have specific assignments (e.g., `Iterator<Item=T>`) |
+| `path<...>` | Καθορίζει παραμέτρους για ένα γενικεμένο τύπο μέσα σε έναν τύπο (π.χ., `Vec<u8>`) |
+| `path::<...>`, `method::<...>` | Καθορίζει παραμέτρους για ένα γενικεμένο τύπο, συνάρτηση, ή μέθοδο σε μια έκφραση - αναφέρεται συχνά ως turbofish (π.χ., `"42".parse::<i32>()`) |
+| `fn ident<...> ...` | Ορίζει μια γενικεμένη συνάρτηση |
+| `struct ident<...> ...` | Ορίζει μια γενικευμένη δομή |
+| `enum ident<...> ...` | Ορίζει μια γενικευμένη απαρίθμηση |
+| `impl<...> ...` | Ορίζει μια γενικευμένη υλοποίηση |
+| `for<...> type` | Όρια διάρκειας ζωής υψηλότερου βαθμού |
+| `type<ident=type>` | Ένας γενικευμένος τύπος στον οποίο ένας ή περισσότεροι συσχετισμένοι τύποι έχουν συγκεκριμένες αναθέσεις (π.χ., `Iterator<Item=T>`) |
 
-Table B-5 shows symbols that appear in the context of constraining generic type
-parameters with trait bounds.
+Ο Πίνακας Β-5 δείχνει σύμβολα τα οποία εμφανίζονται στο πλαίσιο του περιορισμού παραμέτρων γενικευμένων τύπων με χρήση χαρακτηριστικών ως όρια.
 
-<span class="caption">Table B-5: Trait Bound Constraints</span>
+<span class="caption">Πίνακας Β-5: Περιορισμοί με Χαρακτηριστικά ως Όρια</span>
 
-| Symbol | Explanation |
+| Σύμβολο | Επεξήγηση |
 |--------|-------------|
-| `T: U` | Generic parameter `T` constrained to types that implement `U` |
-| `T: 'a` | Generic type `T` must outlive lifetime `'a` (meaning the type cannot transitively contain any references with lifetimes shorter than `'a`) |
-| `T : 'static` | Generic type `T` contains no borrowed references other than `'static` ones |
-| `'b: 'a` | Generic lifetime `'b` must outlive lifetime `'a` |
-| `T: ?Sized` | Allow generic type parameter to be a dynamically sized type |
-| `'a + trait`, `trait + trait` | Compound type constraint |
+| `T: U` | Ο γενικευμένος τύπος `T` περιορίζεται σε τύπους οι οποίοι υλοποιούν το `U` |
+| `T: 'a` | Ο γενικευμένος τύπος `T` πρέπει να ζει περισσότερο από τη διάρκεια ζωής `'a` (εννοώντας ότι ο τύπος δε μπορεί μεταβατικά να περιέχει αναφορές σε διάρκειες ζωής μικρότερες από την `'a`) |
+| `T : 'static` | Ο γενικευμένος τύπος `T` δεν περιέχει δανεισμένες αναφορές παρά μόνον όσες έχουν διάρκεια ζωής `'static` |
+| `'b: 'a` | Η γενικευμένη διάρκεια ζωής `'b` πρέπει να διαρκεί περισσότερο από τη διάρκεια ζωής `'a` |
+| `T: ?Sized` | Παραχώρηση στην παράμετρο γενικευμένου τύπου της δυνατότητας να αναφέρεται σε τύπο με δυναμικό μέγεθος |
+| `'a + trait`, `trait + trait` | Σύνθετος περιορισμός τύπου |
 
-Table B-6 shows symbols that appear in the context of calling or defining
-macros and specifying attributes on an item.
+Ο Πίνακας Β-6 δείχνει σύμβολα τα οποία εμφανίζονται στο πλαίσιο της κλήσης ή του ορισμού μακροεντολών και καθορισμού γνωρισμάτων σε ένα αντικείμενο.
 
-<span class="caption">Table B-6: Macros and Attributes</span>
+<span class="caption">Πίνακας Β-6: Μακροεντολές και Γνωρίσματα</span>
 
-| Symbol | Explanation |
+| Σύμβολο | Επεξήγηση |
 |--------|-------------|
-| `#[meta]` | Outer attribute |
-| `#![meta]` | Inner attribute |
-| `$ident` | Macro substitution |
-| `$ident:kind` | Macro capture |
-| `$(…)…` | Macro repetition |
+| `#[meta]` | Εξωτερικό γνώρισμα |
+| `#![meta]` | Εσωτερικό γνώρισμα |
+| `$ident` | Υποκατάσταση μακροεντολής |
+| `$ident:kind` | Αιχμαλώτιση μακροεντολής |
+| `$(…)…` | Επανάληψη μακροεντολής |
 
-Table B-7 shows symbols that create comments.
+Ο Πινακας Β-7 δείχνει σύμβολα τα οποία δημιουργούν σχόλια.
 
-<span class="caption">Table B-7: Comments</span>
+<span class="caption">Πίνακας Β-7: Σχόλια</span>
 
-| Symbol | Explanation |
+| Σύμβολο | Επεξήγηση |
 |--------|-------------|
-| `//` | Line comment |
-| `//!` | Inner line doc comment |
-| `///` | Outer line doc comment |
-| `/*...*/` | Block comment |
-| `/*!...*/` | Inner block doc comment |
-| `/**...*/` | Outer block doc comment |
+| `//` | Σχόλιο μίας γραμμής |
+| `//!` | Εσωτερικό σχόλιο τεκμηρίωσης μιας γραμμής |
+| `///` | Εξωτερικό σχόλιο τεκμηρίωσης μιας γραμμής |
+| `/*...*/` | Σχόλιο πολλών γραμμών |
+| `/*!...*/` | Εσωτερικό σχόλιο τεκμηρίωσης πολλών γραμμών |
+| `/**...*/` | Εξωτερικό σχόλιο τεκμηρίωσης πολλών γραμμών |
 
-Table B-8 shows symbols that appear in the context of using tuples.
+Ο Πίνακας Β-8 δείχνει σύμβολα τα οποία εμφανίζονται στο πλαίσιο της χρήσης πλειάδων.
 
-<span class="caption">Table B-8: Tuples</span>
+<span class="caption">Πίνακας Β-8: Πλειάδες</span>
 
-| Symbol | Explanation |
+| Σύμβολο | Επεξήγηση |
 |--------|-------------|
-| `()` | Empty tuple (aka unit), both literal and type |
-| `(expr)` | Parenthesized expression |
-| `(expr,)` | Single-element tuple expression |
-| `(type,)` | Single-element tuple type |
-| `(expr, ...)` | Tuple expression |
-| `(type, ...)` | Tuple type |
-| `expr(expr, ...)` | Function call expression; also used to initialize tuple `struct`s and tuple `enum` variants |
-| `ident!(...)`, `ident!{...}`, `ident![...]` | Macro invocation |
-| `expr.0`, `expr.1`, etc. | Tuple indexing |
+| `()` | Άδεια πλειάδα (γνωστή και ως ενότητα), υποδηλώνει και το κυριολεκτικό και τον αντίστοιχο τύπο |
+| `(expr)` | Έκφραση σε παρένθεση |
+| `(expr,)` | Έκφραση πλειάδας ενός στοιχείου |
+| `(type,)` | Τύπος πλειάδας ενός στοιχείου |
+| `(expr, ...)` | Έκφραση πλειάδας |
+| `(type, ...)` | Τύπος πλειάδας |
+| `expr(expr, ...)` | Έκφραση κλήσης συνάρτησης — χρησιμοποιείται επίσης για την απόδοση αρχικών τιμών σε πλειάδες `struct`s και πλειάδες παραλλαγών `enum` |
+| `ident!(...)`, `ident!{...}`, `ident![...]` | Κλήση μακροεντολής |
+| `expr.0`, `expr.1`, κλπ. | Προσπέλαση πλειάδας |
 
-Table B-9 shows the contexts in which curly braces are used.
+Ο Πίνακας Β-9 δείχνει τα πλαίσια στα οποία χρησιμοποιούνται άγκιστρα.
 
-<span class="caption">Table B-9: Curly Brackets</span>
+<span class="caption">Πίνακας Β-9: Άγκιστρα</span>
 
-| Context | Explanation |
+| Πλαίσιο | Επεξήγηση |
 |---------|-------------|
-| `{...}` | Block expression |
-| `Type {...}` | `struct` literal |
+| `{...}` | Έκφραση μπλοκ |
+| `Type {...}` | Κυριολεκτικό `struct` |
 
-Table B-10 shows the contexts in which square brackets are used.
+Ο Πίνακας Β-10 δείχνει τα πλαίσια στα οποία οι χρησιμοποιούνται αγκύλες.
 
-<span class="caption">Table B-10: Square Brackets</span>
+<span class="caption">Πίνακας Β-10: Αγκύλες</span>
 
-| Context | Explanation |
+| Πλαίσιο | Επεξήγηση |
 |---------|-------------|
-| `[...]` | Array literal |
-| `[expr; len]` | Array literal containing `len` copies of `expr` |
-| `[type; len]` | Array type containing `len` instances of `type` |
-| `expr[expr]` | Collection indexing. Overloadable (`Index`, `IndexMut`) |
-| `expr[..]`, `expr[a..]`, `expr[..b]`, `expr[a..b]` | Collection indexing pretending to be collection slicing, using `Range`, `RangeFrom`, `RangeTo`, or `RangeFull` as the “index” |
+| `[...]` | Κυριολεκτικό πίνακα |
+| `[expr; len]` | Κυριολεκτικό πίνακα που περιέχει `len` φορές την έκφραση `expr` |
+| `[type; len]` | Τύπος πίνακα που περιέχει `len` πλήθος στοιχείων τύπου `type` |
+| `expr[expr]` | Προσπέλαση συλλογής. Μπορεί να υπερφορτωθεί (`Index`, `IndexMut`) |
+| `expr[..]`, `expr[a..]`, `expr[..b]`, `expr[a..b]` | Προσπέλαση συλλογής που παριστάνει την τμηματοποιήση συλλογής, με χρήση `Range`, `RangeFrom`, `RangeTo`, ή `RangeFull` ως «ευρετήριο» |
