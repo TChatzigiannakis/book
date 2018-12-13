@@ -1,6 +1,7 @@
 book/
 *~
 .idea
+.vscode
 .DS_Store
 target
 tmp
