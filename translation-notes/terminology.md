@@ -30,6 +30,7 @@ parameter|παράμετρος
 pointer|δείκτης
 raw identifier|πρωτογενές αναγνωριστικό
 static|στατικό
+string|συμβολοσειρά
 struct|δομή
 trait|χαρακτηριστικό
 unsafe|επισφαλές
