@@ -7,7 +7,10 @@
 alias|ψευδώνυμο
 attribute|γνώρισμα
 binding|ονοματοδοσία
+bracket|άγκιστρο
+character|χαρακτήρας ή αλφαριθμητικό
 closure|κλείσιμο
+comment|σχόλιο
 compiler|μεταγλωττιστής
 constant|σταθερά
 control flow|έλεγχος ροής
@@ -16,6 +19,7 @@ dependency|εξάρτηση
 enum|απαρίθμηση
 field|πεδίο
 function|συνάρτηση
+generic|γενικευμένο
 higher ranked|υψηλότερης κατάταξης
 identifier|αναγνωριστικό
 iteration|επανάληψη
@@ -25,14 +29,15 @@ loop|βρόχος
 macro|μακροεντολή
 match|ταίριασμα
 method|μέθοδος
-module|τμήμα
+module|δομοστοιχείο
 parameter|παράμετρος
 pointer|δείκτης
 raw identifier|πρωτογενές αναγνωριστικό
 static|στατικό
-string|συμβολοσειρά
+string|συμβολοσειρά ή συμβολοσειρά αλφαριθμητικών
 struct|δομή
 trait|χαρακτηριστικό
+tuple|πλειάδα
 unsafe|επισφαλές
 variant|παραλλαγή
 variable|μεταβλητή

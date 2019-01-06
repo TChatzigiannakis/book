@@ -7,132 +7,152 @@
 [nsprust]: https://nostarch.com/rust
 [nsp]: https://nostarch.com/
 
-Welcome to *The Rust Programming Language*, an introductory book about Rust.
-The Rust programming language helps you write faster, more reliable software.
-High-level ergonomics and low-level control are often at odds in programming
-language design; Rust challenges that conflict. Through balancing powerful
-technical capacity and a great developer experience, Rust gives you the option
-to control low-level details (such as memory usage) without all the hassle
-traditionally associated with such control.
+Καλωσήρθατε στο βιβλίο «Η Γλώσσα Προγραμματισμού Rust», ένα εισαγωγικό βιβλίο
+για τη Rust. Η γλώσσα προγραμματισμού Rust σας επιστρέπει να γράψετε λογισμικό
+που είναι πιο γρήγορο και πιο αξιόπιστο. Η εργονομία σε υψηλό επίπεδο και ο
+έλεγχος σε χαμηλό επίπεδο είναι συχνά αντίρροπες δυνάμεις στο σχεδιασμό
+γλωσσών προγραμματισμού — η Rust προσπαθεί να αποδείξει ότι δε χρειάζεται να
+είναι έτσι. Εξισορροπώντας ισχυρές ικανότητες και μια άριστη εμπειρία για τον
+προγραμματιστή, η Rust σας επιτρέπει να ελέγχετε χαμηλού επιπέδου λεπτομέρειες
+(όπως η χρήση μνήμης) χωρίς την ταλαιπωρία που συνήθως συνοδεύει αυτό τον έλεγχο.
 
-## Who Rust Is For
+## Για Ποιους Είναι η Rust
 
-Rust is ideal for many people for a variety of reasons. Let’s look at a few of
-the most important groups.
+Η Rust είναι ιδανική για πολύ κόσμο, για διάφορους λόγους. Ας δούμε μερικές από
+τις πιο σημαντικές κατηγορίες.
 
-### Teams of Developers
+### Ομάδες Προγραμματιστών
 
-Rust is proving to be a productive tool for collaborating among large teams of
-developers with varying levels of systems programming knowledge. Low-level code
-is prone to a variety of subtle bugs, which in most other languages can be
-caught only through extensive testing and careful code review by experienced
-developers. In Rust, the compiler plays a gatekeeper role by refusing to
-compile code with these elusive bugs, including concurrency bugs. By working
-alongside the compiler, the team can spend their time focusing on the program’s
-logic rather than chasing down bugs.
+Η Rust αποδεικνύεται παραγωγικό εργαλείο συνεργασίας μεταξύ μεγάλων ομάδων
+προγραμματιστών με διαφορετικά επίπεδα γνώσεων στον προγραμματισμό συστημάτων.
+Ο χαμηλού επιπέδου κώδικας είναι επιρρεπής σε λεπτά λάθη, τα οποία στις
+περισσότερες γλώσσες μπορούν να εντοπιστούν μόνο μέσα από εκτενείς δοκιμές
+και προσεκτικό έλεγχο του κώδικα από έμπειρους προγραμματιστές. Στη Rust, ο
+μεταγλωττιστής παίζει το ρόλο του φύλακα, με το να αρνείται να μεταγλωττίσει
+κώδικα ο οποίος περιέχει αυτά τα φευγαλέα λάθη, συμπεριλαμβανομένων και των
+λαθών συγχρονισμού. Δουλεύοντας σε συνεργασία με το μεταγλωττιστή, η ομάδα
+μπορεί να ξοδέψει το χρόνο της εστιάζοντας στη λογική του προγράμματος, και
+όχι στο να κυνηγάει λάθη.
 
-Rust also brings contemporary developer tools to the systems programming world:
+Η Rust φέρνει επίσης σύγχρονα εργαλεία ανάπτυξης στον κόσμο του προγραμματισμού
+συστημάτων:
 
-* Cargo, the included dependency manager and build tool, makes adding,
-  compiling, and managing dependencies painless and consistent across the Rust
-  ecosystem.
-* Rustfmt ensures a consistent coding style across developers.
-* The Rust Language Server powers Integrated Development Environment (IDE)
-  integration for code completion and inline error messages.
+* Το Cargo, ο διαχειριστής εξαρτήσεων και το εργαλείο χτισίματος, κάνει την
+  πρόσθεση, τη μεταγλώττιση, και τη διαχείριση εξαρτήσεων ανώδυνη και συνεπή
+  σε όλο το οικοσύστημα της Rust.
+* Το Rustfmt εξασφαλίζει συνεπή μορφοποίηση για όλους τους προγραμματιστές.
+* Ο Rust Language Server προσφέρει ενσωμάτωση σε ολοκληρωμένα περιβάλλοντα
+  ανάπτυξης (integrated development environments, IDEs) για συμπλήρωση κώδικα
+  και μηνύματα σφαλμάτων στα σημεία όπου εμφανίζονται.
 
-By using these and other tools in the Rust ecosystem, developers can be
-productive while writing systems-level code.
+Χρησιμοποιώντας αυτά και άλλα εργαλεία από το οικοσύστημα της Rust, οι
+προγρμαματιστές μπορούν να είναι παραγωγική όταν γράφουν κώδικα επιπέδου
+συστημάτων.
 
-### Students
+### Μαθητές και Φοιτητές
 
-Rust is for students and those who are interested in learning about systems
-concepts. Using Rust, many people have learned about topics like operating
-systems development. The community is very welcoming and happy to answer
-student questions. Through efforts such as this book, the Rust teams want to
-make systems concepts more accessible to more people, especially those new to
-programming.
+Η Rust είναι για μαθητές και για όσους ενδιαφέρονται να μάθουν έννοιες από
+προγραμματισμό συστημάτων. Χρησιμοποιώντας τη Rust, πολύς κόσμος έχει μάθει
+για θέματα όπως η ανάπτυξη λειτουργικών συστημάτων. Η κοινότητα είναι πολύ
+φιλόξενη και διατεθειμένη να απαντήσει σε ερωτήσεις μαθητών και φοιτητών.
+Μέσα από προσπάθειες όπως είναι το παρόν βιβλίο, οι ομάδες της Rust θέλουν
+να κάνουν τις έννοιες των συστημάτων πιο προσβάσιμες σε περισσότερο κόσμο,
+ειδικά σε όσους είναι καινούριοι στον προγραμματισμό.
 
-### Companies
+### Εταιρίες
 
-Hundreds of companies, large and small, use Rust in production for a variety of
-tasks. Those tasks include command line tools, web services, DevOps tooling,
-embedded devices, audio and video analysis and transcoding, cryptocurrencies,
-bioinformatics, search engines, Internet of Things applications, machine
-learning, and even major parts of the Firefox web browser.
+Εκατοντάδες εταιρίες, μεγάλες και μικρές, χρησιμοποιούν τη Rust στην
+παραγωγή για διάφορα έργα. Αυτά τα έργα περιλαμβάνουν εργαλεία γραμμής
+εντολών, υπηρεσίες ιστού, εργαλεία DevOps, ενσωματωμένες συσκευές, ανάλυση
+και επανακωδικοποίηση ήχου και εικόνας, κρυπτονομίσματα, βιοπληροφορική,
+μηχανές αναζήτησης, εφαρμογές σχετικές με Ίντερνετ των Πραγμάτων, μηχανική
+εκμάθηση, ακόμα και μεγάλα τμήματα του περιηγητή Firefox.
 
-### Open Source Developers
+### Προγραμματιστές Ανοικτού Κώδικα
 
-Rust is for people who want to build the Rust programming language, community,
-developer tools, and libraries. We’d love to have you contribute to the Rust
-language.
+Η Rust είναι για ανθρώπους που θέλουν να χτίσουν την ίδια τη γλώσσα Rust,
+την κοινότητα, τα εργαλεία για προγραμματιστές, και τις βιβλιοθήκες της. Θα
+ήταν χαρά μας να συνεισφέρετε στη γλώσσα Rust.
 
-### People Who Value Speed and Stability
+### Όσοι Ψάχνουν Ταχύτητα και Σταθερότητα
 
-Rust is for people who crave speed and stability in a language. By speed, we
-mean the speed of the programs that you can create with Rust and the speed at
-which Rust lets you write them. The Rust compiler’s checks ensure stability
-through feature additions and refactoring. This is in contrast to the brittle
-legacy code in languages without these checks, which developers are often
-afraid to modify. By striving for zero-cost abstractions, higher-level features
-that compile to lower-level code as fast as code written manually, Rust
-endeavors to make safe code be fast code as well.
+Η Rust είναι για ανθρώπους που ψάχνουν ταχύτητα και σταθερότητα σε μια γλώσσα.
+Με τον όρο «ταχύτητα», εννοούμε την ταχύτητα των προγραμμάτων που δημιουργείτε
+με τη Rust, αλλά και την ταχύτητα με την οποία η Rust σας επιτρέπει να τα γράφετε.
+Οι έλεγχοι του μεταγλωττιστή της Rust διασφαλίζουν τη σταθερότητα κατά τις προσθήκες
+δυνατοτήτων και την αναδιάρθρωση του κώδικα. Αυτό έρχεται σε αντίθεση με το σαθρό
+παλιό κώδικα γραμμένο σε γλώσσες χωρίς αυτούς τους ελέγχους, τον οποίο οι
+προγραμματιστές συχνά φοβούνται να τροποποιήσουν. Στοχεύοντας να προσφέρει αφαιρέσεις
+μηδενικού κόστους, υψηλού επιπέδου δυνατότητες οι οποίες μεταγλωττίζονται σε
+χαμηλού επιπέδου κώδικα ο οποίος είναι εξίσου γρήγορος με κώδικα που γράφτηκε
+με το χέρι, η Rust επιχειρεί να κάνει τον ασφαλή κώδικα να είναι και γρήγορος κώδικας.
 
-The Rust language hopes to support many other users as well; those mentioned
-here are merely some of the biggest stakeholders. Overall, Rust’s greatest
-ambition is to eliminate the trade-offs that programmers have accepted for
-decades by providing safety *and* productivity, speed *and* ergonomics. Give
-Rust a try and see if its choices work for you.
+Η γλώσσα Rustελπίζει να υποστηρίξει και άλλους χρήστες — όσοι αναφέρθηκαν εδώ
+είναι μόνο κάποιοι από τους μεγαλύτερους ενδιαφερόμενους. Γενικά, η μεγαλύτερη
+προσδοκία της Rust είναι να εξαφανίσει τα διλήμματα και τους συμβιβασμούς τους
+οποιούς οι προγραμματιστές έχουν αποδεχτεί εδώ και δεκαετίες, προσφέροντας
+ασφάλεια *και* παραγωγικότητα, ταχύτητα *και* εργονομία. Δώστε μια ευκαιρία στη
+Rust για να δείτε μόνοι σας αν οι επιλογές της σας ταιριάζουν.
 
-## Who This Book Is For
+## Για Ποιους Είναι Αυτό το Βιβλίο
 
-This book assumes that you’ve written code in another programming language but
-doesn’t make any assumptions about which one. We’ve tried to make the material
-broadly accessible to those from a wide variety of programming backgrounds. We
-don’t spend a lot of time talking about what programming *is* or how to think
-about it. If you’re entirely new to programming, you would be better served by
-reading a book that specifically provides an introduction to programming.
+Αυτό το βιβλίο υποθέτει ότι έχετε ήδη εμπειρία στη συγγραφή κώδικα, αλλά δεν
+υποθέτει σε ποια γλώσσα προγραμματισμού. Έχουμε προσπαθήσει να κάνουμε το υλικό
+ευρύτερα προσβάσιμο σε κόσμο που έρχεται από πολλά διαφορετικά προγραμματιστικά
+φόντα. Δεν αφιερώνουμε πολύ χρόνο να λέμε τι *είναι* ο προγραμματισμός ή πώς να
+σκέφτεστε γι' αυτόν. Αν είστε εντελώς αρχάριοι στον προγραμματισμό, θα σας
+εξυπηρετήσει να διαβάσετε ένα βιβλίο που προορίζεται συγκεκριμένα ως εισαγωγή
+στον προγραμματισμό.
 
-## How to Use This Book
+## Πώς να Χρησιμοποιήσετε Αυτό το Βιβλίο
 
-In general, this book assumes that you’re reading it in sequence from front to
-back. Later chapters build on concepts in earlier chapters, and earlier
-chapters might not delve into details on a topic; we typically revisit the
-topic in a later chapter.
+Σε γενικές γραμμές, αυτό το βιβλίο υποθέτει ότι το διαβάζετε με τη σειρά, από
+την αρχή ως το τέλος. Τα κεφάλαια που εμφανίζονται αργότερα βασίζονται σε έννοιες
+οι οποίες αναφέρθηκαν σε προηγούμενα κεφάλαια, και τα πρώτα κεφάλαια δε μπαίνουν
+σε πολλές λεπτομέρειες για το κάθε θέμα — συνήθως επανερχόμαστε στο θέμα σε
+κάποιο επόμενο κεφάλαιο.
 
-You’ll find two kinds of chapters in this book: concept chapters and project
-chapters. In concept chapters, you’ll learn about an aspect of Rust. In project
-chapters, we’ll build small programs together, applying what you’ve learned so
-far. Chapters 2, 12, and 20 are project chapters; the rest are concept chapters.
+Θα βρείτε δύο ειδών κεφάλαι στο βιβλίο: κεφάλαια εννοιών και κεφάλαια έργων.
+Στα κεφάλαια εννοιών, θα μαθαίνετε για κάποια πτυχή της Rust. Στα κεφάλαια έργων,
+θα χτίζουμε μαζί μικρά προγράμματα, εφαρμόζοντας ό,τι έχετε μάθει ως τώρα.
+Τα Κεφάλαια 2, 12, και 20 είναι κεφάλαια έργων — τα υπόλοιπα είναι κεφάλαια
+εννοιών.
 
-Chapter 1 explains how to install Rust, how to write a Hello, world! program,
-and how to use Cargo, Rust’s package manager and build tool. Chapter 2 is a
-hands-on introduction to the Rust language. Here we cover concepts at a high
-level, and later chapters will provide additional detail. If you want to get
-your hands dirty right away, Chapter 2 is the place for that. At first, you
-might even want to skip Chapter 3, which covers Rust features similar to those
-of other programming languages, and head straight to Chapter 4 to learn about
-Rust’s ownership system. However, if you’re a particularly meticulous learner
-who prefers to learn every detail before moving on to the next, you might want
-to skip Chapter 2 and go straight to Chapter 3, returning to Chapter 2 when
-you’d like to work on a project applying the details you’ve learned.
+Το Κεφάλαιο 1 εξηγεί πώς να εγκαταστήσετε τη Rust, πώς να γράψετε ένα πρόγραμμα
+"Hello, world!" και πώς να χρησιμοποιείτε το Cargo, το εργαλείο της Rust για
+διαχείριση πακέτων και χτίσιμο προγραμμάτων. Το Κεφάλαιο 2 είναι μία πρακτική
+εισαγωγή στη γλώσσα Rust. Εδώ καλύπτουμε έννοιες σε υψηλότερο επίπεδο, και σε
+αργότερα κεφάλαια θα μπούμε σε περισσότερες λεπτομέρειες. Αν θέλετε να «λερώσετε»
+εξ αρχής τα χέρια σας, το Κεφάλαιο 2 είναι το κατάλληλο. Στην αρχή, μπορεί ίσως
+να θέλετε ακόμα και να προσπεράσετε το Κεφάλαιο 3, το οποίο καλύπτει εκείνες τις
+δυνατότητες της Rust οι οποίες είναι παρόμοιες με αυτές άλλων γλωσσών
+προγραμματισμού, και να δείτε κατ' ευθείαν το Κεφάλαιο 4 ώστε να μέθετε για το
+σύστημα κυριότητας της Rust. Όμως, εάν είστε πάρα πολύ λεπτολόγος και προτιμάτε
+να γνωρίζετε όλες τις λεπτομέρειες προτού πάτε παρακάτω, τότε ίσως να θέλετε
+να προσπεράσετε το Κεφάλαιο 2 και να αρχίσετε από το Κεφάλαιο 3, επιστρέφοντας
+στο Κεφάλαιο 2 όταν θα θέλετε να εφαρμόσετε τις λεπτομέρειες που μάθατε.
 
-Chapter 5 discusses structs and methods, and Chapter 6 covers enums, `match`
-expressions, and the `if let` control flow construct. You’ll use structs and
-enums to make custom types in Rust.
+Το Κεφάλαιο 5 μιλάει για δομές δεδομένων και μεθόδους, το Κεφάλαιο 6 καλύπτει
+τις απαριθμήσεις, τις εκφράσεις `match`, και τη δομή ελέγχου ροής `if let`. Θα
+χρησιμοποιήσετε δομές και απαριθμήσεις για να δημιουργείτε δικούς σας τύπους
+στη Rust.
 
-In Chapter 7, you’ll learn about Rust’s module system and about privacy rules
-for organizing your code and its public Application Programming Interface
-(API). Chapter 8 discusses some common collection data structures that the
-standard library provides, such as vectors, strings, and hash maps. Chapter 9
-explores Rust’s error-handling philosophy and techniques.
+Στο Κεφάλαιο 7, θα μάθετε για το σύστημα μονάδων της Rust και για τους κανόνες
+ορατότητας ώστε να οργανώνετε τον κώδικά σας και τη δημόσια Διεπαφή Προγραμματισμού
+Εφαρμογών (application programming interface, API) του. Το Κεφάλαιο 8 ααφέρει
+κάποιες συνηθισμένες δομές συλλογών που προσφέρονται από τη βασική βιβλιοθήκη,
+όπως διανύσματα (λίστες), συμβολοσειρές, και χάρτες κατατεμαχισμού. Το Κεφάλαιο 9
+εξερευνά τη φιλοσοφία και τις τεχνικές της Rust που αφορούν τη διαχείριση
+σφαλμάτων.
 
-Chapter 10 digs into generics, traits, and lifetimes, which give you the power
-to define code that applies to multiple types. Chapter 11 is all about testing,
-which even with Rust’s safety guarantees is necessary to ensure your program’s
-logic is correct. In Chapter 12, we’ll build our own implementation of a subset
-of functionality from the `grep` command line tool that searches for text
-within files. For this, we’ll use many of the concepts we discussed in the
-previous chapters.
+Στο Κεφάλαιο 10 θα εμβαθύνουμε στο γενικευμένο προγραμματισμό, τα χαρακτηριστικά,
+και τις διάρκειες ζωής, τα οποία σας δίνουον τη δύναμη να ορίσετε κώδικα ο οποίος
+είναι εφαρμόσιμος σε πολλούς τύπους. Το Κεφάλαιο 11 αφορά τις δοκιμές οι οποίες,
+ακόμα και με τις εγγυήσεις ασφαλειάς της Rust, παραμένουν απαραίτητες για να
+διασφαλιστεί η ορθότητα της λογικής του προγράμματός σας. Στο Κεφάλαιο 12, θα
+φτιάξουμε μια δική μας υλοποίηση ενός υποσυστήματος της λειτουργικότητας του
+εργαλείου `grep`, το οποίο ψάχνει για κείμενο μέσα σε αρχεία. Γι' αυτό το σκοπό,
+θα χρησιμοποιήσουμε πολλές έννοιες που συζητήσαμε σε προηγούμενα κεφάλαια.
 
 Chapter 13 explores closures and iterators: features of Rust that come from
 functional programming languages. In Chapter 14, we’ll examine Cargo in more
@@ -183,9 +203,10 @@ error. Ferris will also help you distinguish code that isn’t meant to work:
 In most situations, we’ll lead you to the correct version of any code that
 doesn’t compile.
 
-## Source Code
+## Πηγαίος Κώδικας
 
-The source files from which this book is generated can be found on
-[GitHub][book].
+Τα αρχεία πηγαίου κώδικα από τα οποία δημιουργείται αυτό το βιβλίο μπορούν
+να βρεθούν στο [GitHub][book]. (Σύνδεσμοι για τις μεταφράσεις περιλαμβάνονται
+στο σχετικό παράρτημα.)
 
 [book]: https://github.com/rust-lang/book/tree/master/src
